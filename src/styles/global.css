@@ -73,6 +73,12 @@
   --space-3xl: 4rem;
   --space-4xl: 6rem;
   --space-5xl: 8rem;
+
+  /* Layout Tokens */
+  --section-gap: 6rem;
+  --page-margin-mobile: 1.25rem;
+  --page-margin-desktop: 3rem;
+  --gutter: 1.5rem;
 }
 
 @layer base {
@@ -239,18 +245,20 @@
 /* Carousel */
 @keyframes scroll-carousel {
   0% { transform: translateX(0); }
-  100% { transform: translateX(calc(-380px * 4 - 32px * 4)); }
+  100% { transform: translateX(-50%); }
 }
 
 .carousel-track {
   display: flex;
-  width: calc((380px + 32px) * 8);
-  animation: scroll-carousel 25s linear infinite;
+  gap: 1.5rem;
+  animation: scroll-carousel 30s linear infinite;
 }
 
 .carousel-track:hover {
   animation-play-state: paused;
 }
+
+/* Section Spacing */
 
 /* GSAP Animation Helpers */
 .gsap-fade-up {

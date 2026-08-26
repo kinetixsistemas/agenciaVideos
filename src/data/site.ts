@@ -7,19 +7,19 @@
 
 import type { SiteConfig } from "../types";
 
-/** Configuración principal del sitio Electric Apple */
+/** Configuración principal del sitio Daller */
 export const siteConfig: SiteConfig = {
   /** Título del sitio que aparece en pestañas y SEO */
-  title: "Electric Apple - Visión en Movimiento",
+  title: "Daller - Visión en Movimiento",
   /** Descripción meta para motores de búsqueda */
   description:
     "Producción cinematográfica de élite encuentra ingeniería digital brutalista. Creamos experiencias que exigen atención y se niegan a ser ignoradas.",
   /** URL base del sitio */
-  url: "https://electricapple.agency",
+  url: "https://daller.agency",
   /** Imagen por defecto para compartir en redes sociales */
   image: "/og-image.jpg",
   /** Correo electrónico de contacto */
-  email: "hola@electricapple.agency",
+  email: "hola@daller.agency",
   /** Teléfono de contacto */
   phone: "+13105551234",
 };

@@ -2,17 +2,8 @@
 /**
  * Footer.astro - Pie de página mejorado
  *
- * Componente que contiene:
- * - Logo de marca
- * - Enlaces de navegación organizados por categorías
- * - Redes sociales
- * - Información de contacto
- * - Copyright y crédito "Elaborado por Kinetix Sistemas"
- *
- * Usa fondo gris para mejor contraste y legibilidad.
+ * Fondo gris, touch targets 44px+, responsive mobile-first.
  */
-
-/** Enlaces organizados por categorías */
 const footerSections = [
   {
     title: "Servicios",
@@ -35,13 +26,12 @@ const footerSections = [
   {
     title: "Legal",
     links: [
-      { label: "Política de Privacidad", href: "/privacidad" },
-      { label: "Términos y Condiciones", href: "/terminos" }
+      { label: "Privacidad", href: "/privacidad" },
+      { label: "Términos", href: "/terminos" }
     ]
   }
 ];
 
-/** Redes sociales */
 const socialLinks = [
   { label: "Instagram", href: "#", icon: "photo_camera" },
   { label: "LinkedIn", href: "#", icon: "public" },
@@ -50,30 +40,28 @@ const socialLinks = [
 ];
 ---
 
-<!-- Footer con fondo gris -->
 <footer class="bg-[#1a1a1c] w-full relative z-10 border-t border-outline-variant/10">
-  <div class="flex flex-col gap-12 px-6 md:px-12 py-16 md:py-20 max-w-[1440px] mx-auto">
-    <!-- Fila superior: Logo y redes sociales -->
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-      <!-- Logo de marca -->
-      <div class="flex flex-col gap-2">
+  <div class="flex flex-col gap-10 px-5 md:px-12 py-12 md:py-20 max-w-[1440px] mx-auto">
+    <!-- Top: Logo + Social -->
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+      <div class="flex flex-col gap-1">
         <a
-          class="heading-md text-2xl md:text-3xl text-primary hover:scale-105 transition-transform duration-200"
+          class="flex items-center gap-2.5 hover:scale-105 transition-transform duration-200 min-h-[44px]"
           href="/"
-          aria-label="Electric Apple - Volver al inicio"
+          aria-label="Daller - Volver al inicio"
         >
-          Electric Apple
+          <img src="/images/dallerLogo.jpeg" alt="" class="h-9 md:h-10 w-9 md:w-10 rounded-full object-cover" />
+          <span class="heading-md text-xl md:text-2xl font-bold text-primary">Daller</span>
         </a>
-        <p class="body-md text-sm text-text-muted">
+        <p class="body-md text-xs md:text-sm text-text-muted ml-[46px]">
           Visión en Movimiento. Ingeniería Digital.
         </p>
       </div>
 
-      <!-- Redes sociales -->
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-3">
         {socialLinks.map((social) => (
           <a
-            class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-text-muted hover:bg-[#32D74B] hover:text-surface-container-lowest transition-all duration-300"
+            class="w-11 h-11 rounded-full bg-surface-container-high flex items-center justify-center text-text-muted hover:bg-[#32D74B] hover:text-surface-container-lowest transition-all duration-300"
             href={social.href}
             aria-label={social.label}
             target="_blank"
@@ -85,75 +73,42 @@ const socialLinks = [
       </div>
     </div>
 
-    <!-- Contenido principal: Enlaces organizados -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-      <!-- Columna de servicios -->
-      <div>
-        <h3 class="heading-md text-lg text-text-primary mb-4">{footerSections[0].title}</h3>
-        <ul class="space-y-3">
-          {footerSections[0].links.map((link) => (
-            <li>
-              <a
-                class="body-md text-sm text-text-muted hover:text-[#32D74B] transition-colors"
-                href={link.href}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
+    <!-- Links grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-8">
+      {footerSections.map((section) => (
+        <div>
+          <h3 class="heading-md text-base md:text-lg text-text-primary mb-3">{section.title}</h3>
+          <ul class="flex flex-col gap-0.5">
+            {section.links.map((link) => (
+              <li>
+                <a
+                  class="body-md text-sm text-text-muted hover:text-[#32D74B] transition-colors inline-flex items-center min-h-[40px] py-1"
+                  href={link.href}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
 
-      <!-- Columna de empresa -->
+      <!-- Contacto -->
       <div>
-        <h3 class="heading-md text-lg text-text-primary mb-4">{footerSections[1].title}</h3>
-        <ul class="space-y-3">
-          {footerSections[1].links.map((link) => (
-            <li>
-              <a
-                class="body-md text-sm text-text-muted hover:text-[#32D74B] transition-colors"
-                href={link.href}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <!-- Columna de legal -->
-      <div>
-        <h3 class="heading-md text-lg text-text-primary mb-4">{footerSections[2].title}</h3>
-        <ul class="space-y-3">
-          {footerSections[2].links.map((link) => (
-            <li>
-              <a
-                class="body-md text-sm text-text-muted hover:text-[#32D74B] transition-colors"
-                href={link.href}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <!-- Columna de contacto -->
-      <div>
-        <h3 class="heading-md text-lg text-text-primary mb-4">Contacto</h3>
-        <ul class="space-y-3">
+        <h3 class="heading-md text-base md:text-lg text-text-primary mb-3">Contacto</h3>
+        <ul class="flex flex-col gap-0.5">
           <li>
             <a
-              class="body-md text-sm text-text-muted hover:text-[#32D74B] transition-colors flex items-center gap-2"
-              href="mailto:hola@electricapple.agency"
+              class="body-md text-sm text-text-muted hover:text-[#32D74B] transition-colors flex items-center gap-2 min-h-[40px] py-1"
+              href="mailto:hola@daller.agency"
             >
               <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 0;">mail</span>
-              hola@electricapple.agency
+              hola@daller.agency
             </a>
           </li>
           <li>
             <a
-              class="body-md text-sm text-text-muted hover:text-[#32D74B] transition-colors flex items-center gap-2"
+              class="body-md text-sm text-text-muted hover:text-[#32D74B] transition-colors flex items-center gap-2 min-h-[40px] py-1"
               href="tel:+13105551234"
             >
               <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 0;">phone</span>
@@ -161,7 +116,7 @@ const socialLinks = [
             </a>
           </li>
           <li>
-            <span class="body-md text-sm text-text-muted flex items-center gap-2">
+            <span class="body-md text-sm text-text-muted flex items-center gap-2 min-h-[40px] py-1">
               <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 0;">location_on</span>
               Los Ángeles, CA
             </span>
@@ -170,18 +125,20 @@ const socialLinks = [
       </div>
     </div>
 
-    <!-- Separador horizontal -->
+    <!-- Separator -->
     <div class="w-full h-px bg-outline-variant/20" role="separator"></div>
 
-    <!-- Fila inferior: Copyright y crédito -->
-    <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-text-muted">
-      <p class="body-md text-sm">
-        &copy; {new Date().getFullYear()} Electric Apple. Todos los derechos reservados.
+    <!-- Bottom -->
+    <div class="flex flex-col sm:flex-row justify-between items-center gap-3 text-xs md:text-sm text-text-muted">
+      <p class="body-md">
+        &copy; {new Date().getFullYear()} Daller. Todos los derechos reservados.
       </p>
-      <p class="body-md text-sm flex items-center gap-2">
-        Elaborado por 
-        <span class="text-[#32D74B] font-semibold">Kinetix Sistemas</span>
-        <span class="material-symbols-outlined text-[#32D74B] text-sm" style="font-variation-settings: 'FILL' 0;">bolt</span>
+      <p class="body-md flex items-center gap-1.5">
+        Elaborado por
+        <a href="https://kinetixsistemas.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-[#32D74B] font-semibold hover:underline">
+          <img src="/images/og-kinetix.jpg" alt="" class="w-5 h-5 rounded-sm object-cover" aria-hidden="true" />
+          Kinetix Sistemas
+        </a>
       </p>
     </div>
   </div>

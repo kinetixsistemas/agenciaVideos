@@ -1,37 +1,33 @@
 ---
 /**
- * Header.astro - Barra de navegación mejorada
+ * Header.astro - Barra de navegación con menú mobile mejorado
  *
- * Componente fijo en la parte superior que contiene:
- * - Logo de marca "Electric Apple"
- * - Enlaces de navegación desktop y móvil
+ * - Logo de marca "Daller"
+ * - Enlaces de navegación desktop
  * - Botón CTA "Iniciar Proyecto"
- * - Menú overlay para dispositivos móviles
- *
- * Incluye lógica JavaScript para toggle del menú móvil
- * con soporte para accesibilidad (aria-expanded, aria-controls).
- *
- * @component
+ * - Panel lateral slide-in para móvil con touch targets 44px+
+ * - Soporte accesibilidad completo
  */
 import { mainNav } from "../data/navigation";
 ---
 
-<!-- Barra de navegación fija con efecto glassmorphism -->
+<!-- Barra de navegación fija -->
 <header
   class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/10"
   role="banner"
 >
-  <div class="flex justify-between items-center px-6 md:px-12 py-4 md:py-6 max-w-[1440px] mx-auto">
-    <!-- Logo de marca -->
+  <div class="flex justify-between items-center px-5 md:px-12 py-3 md:py-5 max-w-[1440px] mx-auto">
+    <!-- Logo -->
     <a
-      class="heading-md text-lg md:text-xl font-bold text-primary hover:scale-105 transition-transform duration-200"
+      class="flex items-center gap-2.5 min-h-[44px] hover:scale-105 transition-transform duration-200"
       href="/"
-      aria-label="Electric Apple - Volver al inicio"
+      aria-label="Daller - Volver al inicio"
     >
-      Electric Apple
+      <img src="/images/dallerLogo.jpeg" alt="" class="h-9 md:h-10 w-9 md:w-10 rounded-full object-cover" />
+      <span class="heading-md text-lg md:text-xl font-bold text-primary">Daller</span>
     </a>
 
-    <!-- Enlaces de navegación (solo desktop) -->
+    <!-- Desktop nav -->
     <nav class="hidden md:flex items-center gap-8" aria-label="Navegación principal">
       {mainNav.map((item) => (
         <a
@@ -48,7 +44,7 @@ import { mainNav } from "../data/navigation";
       ))}
     </nav>
 
-    <!-- Botón CTA principal -->
+    <!-- CTA desktop -->
     <a
       class="hidden md:inline-flex btn-primary text-sm px-6 py-3"
       href="/contact"
@@ -56,102 +52,120 @@ import { mainNav } from "../data/navigation";
       Iniciar Proyecto
     </a>
 
-    <!-- Botón de menú móvil -->
+    <!-- Mobile hamburger -->
     <button
       id="mobile-menu-button"
-      class="md:hidden text-primary p-2 -mr-2"
+      class="md:hidden text-primary min-h-[44px] min-w-[44px] flex items-center justify-center -mr-2"
       aria-label="Abrir menú de navegación"
       aria-expanded="false"
-      aria-controls="mobile-menu-overlay"
+      aria-controls="mobile-menu-panel"
     >
-      <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+      <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 0;">menu</span>
     </button>
   </div>
 </header>
 
-<!-- Overlay del menú móvil -->
+<!-- Backdrop -->
 <div
-  id="mobile-menu-overlay"
-  class="fixed inset-0 z-40 bg-surface-container-lowest/95 backdrop-blur-xl hidden flex-col justify-center items-center gap-8"
+  id="mobile-menu-backdrop"
+  class="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm hidden"
+  aria-hidden="true"
+></div>
+
+<!-- Panel lateral mobile -->
+<aside
+  id="mobile-menu-panel"
+  class="fixed top-0 right-0 z-50 h-full w-[min(320px,85vw)] bg-surface-container-low flex flex-col translate-x-full transition-transform duration-300 ease-out md:hidden"
   role="dialog"
   aria-modal="true"
   aria-label="Navegación móvil"
 >
-  <nav class="flex flex-col items-center gap-6" aria-label="Menú móvil">
-    {mainNav.map((item) => (
-      <a
-        class={`heading-md text-2xl transition-colors hover:text-primary ${
-          Astro.url.pathname === item.href || (item.href !== "/" && Astro.url.pathname.startsWith(item.href))
-            ? "text-primary"
-            : "text-on-surface-variant"
-        }`}
-        href={item.href}
-        aria-current={Astro.url.pathname === item.href ? "page" : undefined}
-      >
-        {item.label}
-      </a>
-    ))}
+  <!-- Header del panel -->
+  <div class="flex items-center justify-between px-5 py-4 border-b border-outline-variant/10">
+    <span class="heading-md text-base font-bold text-primary">Menú</span>
+    <button
+      id="mobile-menu-close"
+      class="text-on-surface-variant hover:text-primary min-h-[44px] min-w-[44px] flex items-center justify-center -mr-2"
+      aria-label="Cerrar menú"
+    >
+      <span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 0;">close</span>
+    </button>
+  </div>
+
+  <!-- Links -->
+  <nav class="flex-1 overflow-y-auto py-4 px-5" aria-label="Menú móvil">
+    <ul class="flex flex-col gap-1">
+      {mainNav.map((item) => (
+        <li>
+          <a
+            class={`flex items-center gap-3 px-4 py-3.5 rounded-2xl min-h-[48px] label-md text-base transition-colors ${
+              Astro.url.pathname === item.href || (item.href !== "/" && Astro.url.pathname.startsWith(item.href))
+                ? "bg-primary/10 text-primary font-semibold"
+                : "text-on-surface-variant hover:bg-surface-container-high/50 hover:text-primary"
+            }`}
+            href={item.href}
+            aria-current={Astro.url.pathname === item.href ? "page" : undefined}
+          >
+            {item.label}
+            {Astro.url.pathname === item.href && (
+              <span class="ml-auto w-1.5 h-1.5 rounded-full bg-primary" aria-hidden="true"></span>
+            )}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+
+  <!-- CTA bottom -->
+  <div class="px-5 pb-6 pt-4 border-t border-outline-variant/10">
     <a
-      class="mt-4 btn-primary text-base px-8 py-4"
+      class="btn-primary w-full text-center text-base py-3.5"
       href="/contact"
     >
       Iniciar Proyecto
     </a>
-  </nav>
-</div>
+  </div>
+</aside>
 
 <script>
-  /**
-   * Inicializa el menú móvil con toggle de apertura/cierre.
-   * Maneja el estado de aria-expanded y bloquea el scroll
-   * del body cuando el menú está abierto.
-   */
   function initMobileMenu() {
-    const button = document.getElementById("mobile-menu-button");
-    const menu = document.getElementById("mobile-menu-overlay");
-    if (!button || !menu) return;
-
-    const closeMenu = () => {
-      menu.classList.add("hidden");
-      menu.classList.remove("flex");
-      button.setAttribute("aria-expanded", "false");
-      button.querySelector("span")!.textContent = "menu";
-      document.body.style.overflow = "";
-    };
+    const openBtn = document.getElementById("mobile-menu-button");
+    const closeBtn = document.getElementById("mobile-menu-close");
+    const panel = document.getElementById("mobile-menu-panel");
+    const backdrop = document.getElementById("mobile-menu-backdrop");
+    if (!openBtn || !closeBtn || !panel || !backdrop) return;
 
     const openMenu = () => {
-      menu.classList.remove("hidden");
-      menu.classList.add("flex");
-      button.setAttribute("aria-expanded", "true");
-      button.querySelector("span")!.textContent = "close";
+      panel.style.transform = "translateX(0)";
+      backdrop.classList.remove("hidden");
+      openBtn.setAttribute("aria-expanded", "true");
       document.body.style.overflow = "hidden";
+      closeBtn.focus();
     };
 
-    // Toggle del menú al hacer clic en el botón
-    button.addEventListener("click", () => {
-      const isOpen = menu.classList.contains("flex");
-      if (isOpen) {
-        closeMenu();
-      } else {
-        openMenu();
-      }
-    });
+    const closeMenu = () => {
+      panel.style.transform = "translateX(100%)";
+      backdrop.classList.add("hidden");
+      openBtn.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
+      openBtn.focus();
+    };
 
-    // Cerrar menú al hacer clic en cualquier enlace
-    menu.querySelectorAll("a").forEach((link) => {
+    openBtn.addEventListener("click", openMenu);
+    closeBtn.addEventListener("click", closeMenu);
+    backdrop.addEventListener("click", closeMenu);
+
+    panel.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", closeMenu);
     });
 
-    // Cerrar menú con tecla Escape
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && menu.classList.contains("flex")) {
+      if (e.key === "Escape" && panel.style.transform === "translateX(0)") {
         closeMenu();
-        button.focus();
       }
     });
   }
 
-  // Inicializar en carga de página y en transiciones de Astro
   document.addEventListener("astro:page-load", initMobileMenu);
   initMobileMenu();
 </script>

@@ -1,44 +1,33 @@
+---
 /**
  * Features.astro - Sección de características principales
  *
- * Muestra dos bloques de información destacada:
- * 1. Calidad Cinematográfica - Resolución 8K, HDR, con imagen 16:9
- * 2. Ingeniería de Precisión - Arquitectura con imágenes 4:5
- *
- * Usa grid de 12 columnas para layouts asimétricos
- * y el contenedor glass-panel con hover-lift para profundidad.
+ * Dos bloques de información destacada con responsive mobile-first.
  */
 
 ---
----
 
-<!-- Sección de características con grid asimétrico -->
-<section class="py-[var(--section-gap)] px-[var(--page-margin-mobile)] md:px-[var(--page-margin-desktop)] max-w-[1440px] mx-auto w-full" aria-label="Características">
+<section class="py-16 md:py-24 px-5 md:px-12 max-w-[1440px] mx-auto w-full" aria-label="Características">
 
   <!-- Bloque 1: Calidad Cinematográfica -->
-  <div class="grid grid-cols-1 md:grid-cols-12 gap-[var(--gutter)] items-center mb-[var(--section-gap)]">
-    <!-- Columna de texto (5 columnas) -->
-    <div class="md:col-span-5 flex flex-col gap-8 order-2 md:order-1">
-      <h2 class="font-headline-lg text-headline-lg md:text-headline-lg text-text-primary">
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center mb-16 md:mb-24">
+    <div class="md:col-span-5 flex flex-col gap-6 md:gap-8 order-2 md:order-1">
+      <h2 class="heading-lg text-2xl md:text-3xl lg:text-4xl text-text-primary">
         Calidad<br />Cinematográfica
       </h2>
-      <p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+      <p class="body-md text-sm md:text-base text-on-surface-variant max-w-md">
         Cada fotograma es un lienzo. Employamos tecnología líder en la industria para asegurar que la narrativa visual sea tan compelling como la fundación técnica sobre la que descansa. Sin compromisos.
       </p>
-      <!-- Tags de características -->
-      <div class="flex gap-4 mb-4">
-        <span class="px-4 py-2 rounded-full bg-surface-container-high text-primary font-label-md text-label-md border border-outline-variant/20">Resolución 8K</span>
-        <span class="px-4 py-2 rounded-full bg-surface-container-high text-primary font-label-md text-label-md border border-outline-variant/20">Gradación HDR</span>
+      <div class="flex flex-wrap gap-3">
+        <span class="px-4 py-2 rounded-full bg-surface-container-high text-primary text-sm border border-outline-variant/20">Resolución 8K</span>
+        <span class="px-4 py-2 rounded-full bg-surface-container-high text-primary text-sm border border-outline-variant/20">Gradación HDR</span>
       </div>
-      <!-- Botón CTA -->
-      <a class="w-fit inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#32D74B] text-surface-container-lowest font-button text-button hover:scale-[1.02] transition-transform duration-200 neon-glow" href="/services">
+      <a class="w-fit inline-flex items-center justify-center px-6 md:px-8 py-3.5 md:py-4 rounded-full bg-[#32D74B] text-surface-container-lowest font-semibold text-sm md:text-base hover:scale-[1.02] transition-transform duration-200 neon-glow min-h-[44px]" href="/services">
         Ver Nuestro Proceso
       </a>
     </div>
-    <!-- Columna de imagen (7 columnas) -->
     <div class="md:col-span-7 order-1 md:order-2">
-      <div class="relative rounded-[32px] overflow-hidden aspect-[16/9] glass-panel group">
-        <!-- Imagen con efecto hover scale -->
+      <div class="relative rounded-3xl overflow-hidden aspect-[16/9] glass-panel group">
         <div class="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
           <div
             class="w-full h-full bg-cover bg-center"
@@ -49,13 +38,11 @@
     </div>
   </div>
 
-  <!-- Bloque 2: Ingeniería de Precisión (con fondo diferenciado) -->
-  <div class="grid grid-cols-1 md:grid-cols-12 gap-[var(--gutter)] items-center bg-surface-container-lowest rounded-[48px] p-8 md:p-16">
-    <!-- Grid de imágenes (7 columnas) -->
+  <!-- Bloque 2: Ingeniería de Precisión -->
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center bg-surface-container-lowest rounded-3xl md:rounded-[48px] p-6 md:p-12 lg:p-16">
     <div class="md:col-span-7">
-      <div class="grid grid-cols-2 gap-4">
-        <!-- Imagen izquierda con offset superior -->
-        <div class="relative rounded-[32px] overflow-hidden aspect-[4/5] glass-panel group mt-12">
+      <div class="grid grid-cols-2 gap-3 md:gap-4">
+        <div class="relative rounded-2xl md:rounded-3xl overflow-hidden aspect-[4/5] glass-panel group mt-0 md:mt-12">
           <div class="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
             <div
               class="w-full h-full bg-cover bg-center"
@@ -63,8 +50,7 @@
             ></div>
           </div>
         </div>
-        <!-- Imagen derecha -->
-        <div class="relative rounded-[32px] overflow-hidden aspect-[4/5] glass-panel group">
+        <div class="relative rounded-2xl md:rounded-3xl overflow-hidden aspect-[4/5] glass-panel group">
           <div class="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
             <div
               class="w-full h-full bg-cover bg-center"
@@ -74,20 +60,18 @@
         </div>
       </div>
     </div>
-    <!-- Columna de texto (5 columnas) -->
-    <div class="md:col-span-5 flex flex-col gap-8 md:pl-12 mt-12 md:mt-0">
-      <h2 class="font-headline-lg text-headline-lg md:text-headline-lg text-text-primary">
+    <div class="md:col-span-5 flex flex-col gap-6 md:gap-8 md:pl-8 lg:pl-12 mt-8 md:mt-0">
+      <h2 class="heading-lg text-2xl md:text-3xl lg:text-4xl text-text-primary">
         Ingeniería de<br />Precisión
       </h2>
-      <p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+      <p class="body-md text-sm md:text-base text-on-surface-variant max-w-md">
         La arquitectura bajo la superficie. Construimos sistemas resilientes y de alto rendimiento diseñados para escalar sin costuras. La forma sigue a la función, brutal y bellamente.
       </p>
-      <!-- CTAs -->
-      <div class="flex flex-col gap-6">
-        <a class="w-fit inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#32D74B] text-surface-container-lowest font-button text-button hover:scale-[1.02] transition-transform duration-200 neon-glow" href="/contact">
+      <div class="flex flex-col gap-4 md:gap-6">
+        <a class="w-fit inline-flex items-center justify-center px-6 md:px-8 py-3.5 md:py-4 rounded-full bg-[#32D74B] text-surface-container-lowest font-semibold text-sm md:text-base hover:scale-[1.02] transition-transform duration-200 neon-glow min-h-[44px]" href="/contact">
           Iniciar tu Proyecto
         </a>
-        <a class="inline-flex items-center gap-2 text-primary hover:text-primary-container transition-colors font-button text-button w-fit group" href="/services">
+        <a class="inline-flex items-center gap-2 text-primary hover:text-primary-container transition-colors font-semibold text-sm md:text-base w-fit group min-h-[44px]" href="/services">
           Explorar nuestro Stack
           <span class="material-symbols-outlined transform group-hover:translate-x-1 transition-transform" style="font-variation-settings: 'FILL' 0;">arrow_forward</span>
         </a>

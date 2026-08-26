@@ -42,25 +42,25 @@ const team = [
     name: "Alex Mercer",
     role: "Director Creativo",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=750&fit=crop&q=80",
-    alt: "Retrato profesional de Alex Mercer, Director Creativo de Electric Apple"
+    alt: "Retrato profesional de Alex Mercer, Director Creativo de Daller"
   },
   {
     name: "Sarah Chen",
     role: "Ingeniera Principal",
     image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&h=750&fit=crop&q=80",
-    alt: "Retrato profesional de Sarah Chen, Ingeniera Principal de Electric Apple"
+    alt: "Retrato profesional de Sarah Chen, Ingeniera Principal de Daller"
   },
   {
     name: "Marcus Vance",
     role: "Líder de Motion",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&h=750&fit=crop&q=80",
-    alt: "Retrato profesional de Marcus Vance, Líder de Motion de Electric Apple"
+    alt: "Retrato profesional de Marcus Vance, Líder de Motion de Daller"
   }
 ];
 ---
 
 <BaseLayout
-  title="Nosotros - Electric Apple"
+  title="Nosotros - Daller"
   description="Visión en Movimiento. Ingeniamos ventajas competitivas a través de producción cinematográfica de élite e ingeniería digital brutalista."
 >
   <main>
@@ -99,7 +99,7 @@ const team = [
           <!-- Manifiesto -->
           <div class="max-w-2xl about-manifesto">
             <p class="body-lg text-xl text-text-muted leading-relaxed mb-8">
-              Electric Apple es un consorcio élite de brutalistas del diseño y puristas del código. Desmantelamos convenciones mediocres y engineeramos experiencias cinematográficas de alta fidelidad que exigen atención.
+              Daller es un consorcio élite de brutalistas del diseño y puristas del código. Desmantelamos convenciones mediocres y engineeramos experiencias cinematográficas de alta fidelidad que exigen atención.
             </p>
             <p class="body-lg text-lg text-text-muted/80 leading-relaxed">
               Nuestro manifiesto es simple: <strong class="text-[#32D74B]">sin compromisos, sin plantillas, pura innovación agresiva</strong>. Construimos espacios digitales que se sienten físicamente impactantes.
@@ -290,16 +290,22 @@ const team = [
 </script>
 
 <style>
-  /* Team card hover effects */
+  /* Team card: info visible on mobile (no hover), hidden on desktop until hover */
   .team-card .team-info {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  
-  .team-card:hover .team-info {
     opacity: 1;
     transform: translateY(0);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @media (hover: hover) {
+    .team-card .team-info {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .team-card:hover .team-info {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   /* Focus states for accessibility */

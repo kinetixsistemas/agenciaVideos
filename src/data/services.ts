@@ -1,5 +1,5 @@
 /**
- * services.ts - Catálogo de servicios de Electric Apple
+ * services.ts - Catálogo de servicios de Daller
  *
  * Define los tres servicios principales que ofrece la agencia:
  * producción de video, desarrollo web y diseño gráfico.
