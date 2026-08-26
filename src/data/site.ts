@@ -17,7 +17,7 @@ export const siteConfig: SiteConfig = {
   /** URL base del sitio */
   url: "https://daller.agency",
   /** Imagen por defecto para compartir en redes sociales */
-  image: "/og-image.jpg",
+  image: "/images/og-kinetix.jpg",
   /** Correo electrónico de contacto */
   email: "hola@daller.agency",
   /** Teléfono de contacto */

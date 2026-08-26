@@ -141,7 +141,6 @@ const faq = [
   title="Edición de Videos - Daller"
   description="Servicio profesional de edición de video con efectos visuales cinematográficos. Motion graphics, VFX, color grading y más."
 >
-  <main>
     <!-- ═══════════════════════════════════════════════ -->
     <!-- HERO SECTION -->
     <!-- ═══════════════════════════════════════════════ -->
@@ -278,47 +277,47 @@ const faq = [
           </p>
         </header>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
           {plans.map((plan) => (
             <article
-              class={`relative glass-panel p-8 rounded-3xl border ${
+              class={`relative glass-panel p-6 md:p-8 rounded-2xl md:rounded-3xl border ${
                 plan.popular
                   ? 'border-[#B535F6]/50 shadow-[0_0_40px_rgba(181,53,246,0.15)]'
                   : 'border-outline-variant/20'
-              } hover-lift-card pricing-card`}
+              } pricing-card`}
               aria-labelledby={`plan-${plan.name}`}
             >
               {plan.popular && (
-                <div class="absolute -top-4 left-1/2 -translate-x-1/2">
-                  <span class="bg-[#B535F6] text-white px-5 py-2 rounded-full label-md text-xs uppercase tracking-wider">
+                <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+                  <span class="bg-[#B535F6] text-white px-4 py-1.5 rounded-full label-md text-xs uppercase tracking-wider">
                     Más Popular
                   </span>
                 </div>
               )}
 
-              <div class="text-center mb-8">
-                <div class="w-14 h-14 rounded-full bg-[#32D74B]/10 flex items-center justify-center mx-auto mb-4">
-                  <span class="material-symbols-outlined text-2xl text-[#32D74B]" style="font-variation-settings: 'FILL' 0;">{plan.icon}</span>
+              <div class="text-center mb-6 md:mb-8">
+                <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#32D74B]/10 flex items-center justify-center mx-auto mb-4">
+                  <span class="material-symbols-outlined text-xl md:text-2xl text-[#32D74B]" style="font-variation-settings: 'FILL' 0;">{plan.icon}</span>
                 </div>
-                <h3 id={`plan-${plan.name}`} class="heading-md text-2xl text-text-primary mb-2">{plan.name}</h3>
-                <div class="mb-3">
-                  <span class={`heading-xl text-4xl ${plan.popular ? 'text-[#B535F6]' : 'text-[#32D74B]'}`}>{plan.price}</span>
-                  <span class="body-md text-text-muted ml-2 text-sm">{plan.period}</span>
+                <h3 id={`plan-${plan.name}`} class="heading-md text-xl md:text-2xl text-text-primary mb-2">{plan.name}</h3>
+                <div class="mb-3 flex flex-col items-center">
+                  <span class={`heading-xl text-3xl md:text-4xl ${plan.popular ? 'text-[#B535F6]' : 'text-[#32D74B]'}`}>{plan.price}</span>
+                  <span class="body-md text-text-muted text-xs md:text-sm">{plan.period}</span>
                 </div>
-                <p class="body-md text-text-muted text-sm">{plan.description}</p>
+                <p class="body-md text-text-muted text-xs md:text-sm">{plan.description}</p>
               </div>
 
-              <ul class="space-y-3 mb-8" role="list">
+              <ul class="space-y-2.5 md:space-y-3 mb-6 md:mb-8" role="list">
                 {plan.features.map((feature) => (
-                  <li class="flex items-start gap-3 text-text-primary body-md text-sm">
-                    <span class="material-symbols-outlined text-[#32D74B] text-lg mt-0.5 flex-shrink-0" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                  <li class="flex items-start gap-2.5 md:gap-3 text-text-primary body-md text-xs md:text-sm">
+                    <span class="material-symbols-outlined text-[#32D74B] text-base md:text-lg mt-0.5 flex-shrink-0" style="font-variation-settings: 'FILL' 1;">check_circle</span>
                     <span>{feature}</span>
                   </li>
                 ))}
               </ul>
 
               <a
-                class={`w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold transition-all duration-300 ${
+                class={`w-full inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3.5 md:py-4 rounded-full font-semibold transition-all duration-300 text-sm md:text-base ${
                   plan.popular
                     ? 'bg-[#B535F6] text-white hover:scale-[1.02] shadow-[0_4px_20px_rgba(181,53,246,0.4)]'
                     : 'border-2 border-[#32D74B] text-[#32D74B] hover:bg-[#32D74B] hover:text-surface-container-lowest'
@@ -399,7 +398,6 @@ const faq = [
         </a>
       </div>
     </section>
-  </main>
 </BaseLayout>
 
 <script>

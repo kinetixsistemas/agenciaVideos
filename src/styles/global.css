@@ -86,12 +86,12 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
 
   body {
     background-color: var(--color-surface);
     color: var(--color-on-surface);
-    overflow-x: hidden;
     font-family: var(--font-body-md);
     line-height: 1.6;
     font-size: 16px;
@@ -260,7 +260,7 @@
 
 /* Section Spacing */
 
-/* GSAP Animation Helpers */
+/* GSAP Animation Helpers - use translateY only to prevent horizontal overflow */
 .gsap-fade-up {
   opacity: 0;
   transform: translateY(40px);
@@ -268,12 +268,12 @@
 
 .gsap-fade-left {
   opacity: 0;
-  transform: translateX(-60px);
+  transform: translateY(20px);
 }
 
 .gsap-fade-right {
   opacity: 0;
-  transform: translateX(60px);
+  transform: translateY(20px);
 }
 
 .gsap-scale-in {
@@ -292,14 +292,14 @@
   max-width: 1440px;
   margin: 0 auto;
   width: 100%;
-  padding-left: var(--space-mobile, 1rem);
-  padding-right: var(--space-mobile, 1rem);
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 }
 
 @media (min-width: 768px) {
   .container-wide {
-    padding-left: var(--space-desktop, 2rem);
-    padding-right: var(--space-desktop, 2rem);
+    padding-left: 3rem;
+    padding-right: 3rem;
   }
 }
 

@@ -63,7 +63,6 @@ const team = [
   title="Nosotros - Daller"
   description="Visión en Movimiento. Ingeniamos ventajas competitivas a través de producción cinematográfica de élite e ingeniería digital brutalista."
 >
-  <main>
     <!-- ═══════════════════════════════════════════════ -->
     <!-- HERO / MANIFIESTO -->
     <!-- ═══════════════════════════════════════════════ -->
@@ -75,8 +74,8 @@ const team = [
       <div class="absolute inset-0 bg-gradient-to-br from-surface-container-lowest via-surface to-surface-container"></div>
       
       <!-- Elementos decorativos -->
-      <div class="absolute top-20 right-[15%] w-72 h-72 bg-[#B535F6]/8 rounded-full blur-3xl" aria-hidden="true"></div>
-      <div class="absolute bottom-20 left-[10%] w-96 h-96 bg-[#32D74B]/5 rounded-full blur-3xl" aria-hidden="true"></div>
+      <div class="absolute top-20 right-[15%] w-40 h-40 md:w-72 md:h-72 bg-[#B535F6]/8 rounded-full blur-3xl" aria-hidden="true"></div>
+      <div class="absolute bottom-20 left-[10%] w-48 h-48 md:w-96 md:h-96 bg-[#32D74B]/5 rounded-full blur-3xl" aria-hidden="true"></div>
 
       <div class="relative z-10 max-w-[1440px] mx-auto w-full px-6 md:px-12 pt-32">
         <div class="max-w-4xl">
@@ -89,7 +88,7 @@ const team = [
           <!-- Título principal -->
           <h1
             id="about-hero-heading"
-            class="heading-xl text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-text-primary mb-8 leading-[0.95] about-title"
+            class="heading-xl text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-text-primary mb-8 leading-[0.95] about-title break-words"
           >
             Arquitectamos<br />
             <span class="text-[#B535F6]">Verdades</span><br />
@@ -172,8 +171,11 @@ const team = [
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {team.map((member, index) => (
             <article
-              class="team-card group relative rounded-3xl overflow-hidden bg-surface-container aspect-[3/4] cursor-pointer"
+              class="team-card group relative rounded-3xl overflow-hidden bg-surface-container aspect-[3/4]"
               style={`animation-delay: ${index * 150}ms`}
+              tabindex="0"
+              role="group"
+              aria-label={`${member.name} - ${member.role}`}
             >
               <!-- Imagen -->
               <img
@@ -224,7 +226,6 @@ const team = [
         </a>
       </div>
     </section>
-  </main>
 </BaseLayout>
 
 <script>
