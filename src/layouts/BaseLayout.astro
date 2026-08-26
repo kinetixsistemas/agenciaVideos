@@ -1,0 +1,93 @@
+---
+/**
+ * BaseLayout.astro - Layout principal del sitio
+ *
+ * Componente wrapper que envuelve todas las páginas con:
+ * - Etiquetas HTML base (lang, charset, viewport)
+ * - Head con SEO, fuentes y favicon
+ * - Header de navegación
+ * - Contenido principal (slot)
+ * - Footer
+ * - Banner de cookies
+ *
+ * Soporta props opcionales para title, description e image
+ * que se pasan al componente SEOHead.
+ *
+ * @component
+ */
+import "../styles/global.css";
+import SEOHead from "../components/SEOHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import CookieConsent from "../components/CookieConsent.astro";
+import { siteConfig } from "../data/site";
+
+/** Props del layout */
+interface Props {
+  /** Título de la página (opcional, usa valor por defecto del site) */
+  title?: string;
+  /** Descripción de la página (opcional) */
+  description?: string;
+  /** Imagen OG para redes sociales (opcional) */
+  image?: string;
+}
+
+// Extraer props con valores por defecto
+const {
+  title = siteConfig.title,
+  description = siteConfig.description,
+  image = siteConfig.image,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO y meta tags -->
+    <SEOHead title={title} description={description} image={image} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Google Fonts: Hanken Grotesk + Syne -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Syne:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Material Symbols para iconografía -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+  </head>
+  <body class="bg-surface text-on-surface font-body-md antialiased">
+    <!-- Skip to content (accesibilidad) -->
+    <a
+      href="#main-content"
+      class="skip-link"
+    >
+      Saltar al contenido principal
+    </a>
+
+    <!-- Navegación principal -->
+    <Header />
+
+    <!-- Contenido principal de la página -->
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <!-- Pie de página -->
+    <Footer />
+
+    <!-- Banner de cookies -->
+    <CookieConsent />
+  </body>
+</html>

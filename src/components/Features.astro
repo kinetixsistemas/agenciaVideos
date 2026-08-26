@@ -1,0 +1,97 @@
+/**
+ * Features.astro - Sección de características principales
+ *
+ * Muestra dos bloques de información destacada:
+ * 1. Calidad Cinematográfica - Resolución 8K, HDR, con imagen 16:9
+ * 2. Ingeniería de Precisión - Arquitectura con imágenes 4:5
+ *
+ * Usa grid de 12 columnas para layouts asimétricos
+ * y el contenedor glass-panel con hover-lift para profundidad.
+ */
+
+---
+---
+
+<!-- Sección de características con grid asimétrico -->
+<section class="py-[var(--section-gap)] px-[var(--page-margin-mobile)] md:px-[var(--page-margin-desktop)] max-w-[1440px] mx-auto w-full" aria-label="Características">
+
+  <!-- Bloque 1: Calidad Cinematográfica -->
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-[var(--gutter)] items-center mb-[var(--section-gap)]">
+    <!-- Columna de texto (5 columnas) -->
+    <div class="md:col-span-5 flex flex-col gap-8 order-2 md:order-1">
+      <h2 class="font-headline-lg text-headline-lg md:text-headline-lg text-text-primary">
+        Calidad<br />Cinematográfica
+      </h2>
+      <p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+        Cada fotograma es un lienzo. Employamos tecnología líder en la industria para asegurar que la narrativa visual sea tan compelling como la fundación técnica sobre la que descansa. Sin compromisos.
+      </p>
+      <!-- Tags de características -->
+      <div class="flex gap-4 mb-4">
+        <span class="px-4 py-2 rounded-full bg-surface-container-high text-primary font-label-md text-label-md border border-outline-variant/20">Resolución 8K</span>
+        <span class="px-4 py-2 rounded-full bg-surface-container-high text-primary font-label-md text-label-md border border-outline-variant/20">Gradación HDR</span>
+      </div>
+      <!-- Botón CTA -->
+      <a class="w-fit inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#32D74B] text-surface-container-lowest font-button text-button hover:scale-[1.02] transition-transform duration-200 neon-glow" href="/services">
+        Ver Nuestro Proceso
+      </a>
+    </div>
+    <!-- Columna de imagen (7 columnas) -->
+    <div class="md:col-span-7 order-1 md:order-2">
+      <div class="relative rounded-[32px] overflow-hidden aspect-[16/9] glass-panel group">
+        <!-- Imagen con efecto hover scale -->
+        <div class="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
+          <div
+            class="w-full h-full bg-cover bg-center"
+            style="background-image: url('https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=1200&h=675&fit=crop&q=80')"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bloque 2: Ingeniería de Precisión (con fondo diferenciado) -->
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-[var(--gutter)] items-center bg-surface-container-lowest rounded-[48px] p-8 md:p-16">
+    <!-- Grid de imágenes (7 columnas) -->
+    <div class="md:col-span-7">
+      <div class="grid grid-cols-2 gap-4">
+        <!-- Imagen izquierda con offset superior -->
+        <div class="relative rounded-[32px] overflow-hidden aspect-[4/5] glass-panel group mt-12">
+          <div class="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
+            <div
+              class="w-full h-full bg-cover bg-center"
+              style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=750&fit=crop&q=80')"
+            ></div>
+          </div>
+        </div>
+        <!-- Imagen derecha -->
+        <div class="relative rounded-[32px] overflow-hidden aspect-[4/5] glass-panel group">
+          <div class="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
+            <div
+              class="w-full h-full bg-cover bg-center"
+              style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=750&fit=crop&q=80')"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Columna de texto (5 columnas) -->
+    <div class="md:col-span-5 flex flex-col gap-8 md:pl-12 mt-12 md:mt-0">
+      <h2 class="font-headline-lg text-headline-lg md:text-headline-lg text-text-primary">
+        Ingeniería de<br />Precisión
+      </h2>
+      <p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+        La arquitectura bajo la superficie. Construimos sistemas resilientes y de alto rendimiento diseñados para escalar sin costuras. La forma sigue a la función, brutal y bellamente.
+      </p>
+      <!-- CTAs -->
+      <div class="flex flex-col gap-6">
+        <a class="w-fit inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#32D74B] text-surface-container-lowest font-button text-button hover:scale-[1.02] transition-transform duration-200 neon-glow" href="/contact">
+          Iniciar tu Proyecto
+        </a>
+        <a class="inline-flex items-center gap-2 text-primary hover:text-primary-container transition-colors font-button text-button w-fit group" href="/services">
+          Explorar nuestro Stack
+          <span class="material-symbols-outlined transform group-hover:translate-x-1 transition-transform" style="font-variation-settings: 'FILL' 0;">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

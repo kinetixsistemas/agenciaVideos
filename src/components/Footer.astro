@@ -1,0 +1,85 @@
+---
+/**
+ * Footer.astro - Pie de página del sitio
+ *
+ * Componente que contiene:
+ * - Logo de marca
+ * - Enlaces de navegación secundarios
+ * - Redes sociales
+ * - Separador visual
+ * - Copyright y enlaces legales
+ *
+ * Usa border-radius rounded-t-[32px] para crear
+ * una transición visual suave con el contenido.
+ *
+ * @component
+ */
+
+/** Enlaces del footer */
+const footerLinks = [
+  { label: "Manifiesto", href: "/about" },
+  { label: "Instagram", href: "#", ariaLabel: "Síguenos en Instagram" },
+  { label: "LinkedIn", href: "#", ariaLabel: "Síguenos en LinkedIn" },
+  { label: "Dribbble", href: "#", ariaLabel: "Síguenos en Dribbble" },
+  { label: "Twitter", href: "#", ariaLabel: "Síguenos en Twitter" },
+];
+
+/** Enlaces legales */
+const legalLinks = [
+  { label: "Privacidad", href: "/privacidad" },
+  { label: "Términos", href: "/terminos" },
+];
+---
+
+<!-- Footer con fondo oscuro y esquinas redondeadas superiores -->
+<footer
+  class="bg-surface-container-lowest w-full rounded-t-3xl -mt-8 relative z-10"
+  role="contentinfo"
+>
+  <div class="flex flex-col gap-8 md:gap-12 px-6 md:px-12 py-16 md:py-20 max-w-[1440px] mx-auto">
+    <!-- Fila superior: Logo y enlaces -->
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+      <!-- Logo de marca -->
+      <a
+        class="heading-md text-xl md:text-2xl text-primary opacity-80 hover:opacity-100 transition-opacity"
+        href="/"
+        aria-label="Electric Apple - Volver al inicio"
+      >
+        Electric Apple
+      </a>
+
+      <!-- Enlaces de navegación -->
+      <nav class="flex flex-wrap gap-6 md:gap-8" aria-label="Enlaces del pie de página">
+        {footerLinks.map((item) => (
+          <a
+            class="body-md text-sm md:text-base text-text-muted hover:text-primary transition-colors opacity-80 hover:opacity-100"
+            href={item.href}
+            aria-label={item.ariaLabel || item.label}
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+    </div>
+
+    <!-- Separador horizontal -->
+    <div class="w-full h-px bg-outline-variant/20" role="separator"></div>
+
+    <!-- Fila inferior: Copyright y enlaces legales -->
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-text-muted">
+      <p class="body-md text-sm">
+        &copy; {new Date().getFullYear()} Electric Apple. Visión en Movimiento.
+      </p>
+      <div class="flex gap-4 md:gap-6">
+        {legalLinks.map((item) => (
+          <a
+            class="hover:text-primary transition-colors text-sm"
+            href={item.href}
+          >
+            {item.label}
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</footer>

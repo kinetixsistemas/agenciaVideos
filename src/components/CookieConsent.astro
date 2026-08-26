@@ -1,0 +1,86 @@
+---
+/**
+ * CookieConsent.astro - Banner de consentimiento de cookies
+ *
+ * Muestra un banner fijo en la parte inferior con:
+ * - Mensaje de aviso de cookies
+ * - Enlace a política de privacidad
+ * - Botones "Rechazar" y "Aceptar"
+ *
+ * Usa localStorage para recordar la decisión del usuario.
+ * Se oculta automáticamente después deAceptar o rechazar.
+ */
+---
+
+<!-- Banner de cookies (oculto por defecto) -->
+<div
+  id="cookie-consent"
+  class="hidden fixed bottom-0 left-0 right-0 z-50 bg-surface-container-high/95 backdrop-blur-xl border-t border-outline-variant/10"
+  role="dialog"
+  aria-label="Consentimiento de cookies"
+  aria-describedby="cookie-text"
+>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <!-- Mensaje de cookies -->
+      <p id="cookie-text" class="text-sm text-text-muted max-w-2xl">
+        Utilizamos cookies para mejorar tu experiencia. Al continuar navegando, aceptas nuestro uso de cookies.
+        <a href="/privacidad" class="underline hover:text-primary transition-colors"
+          >Más información</a
+        >.
+      </p>
+      <!-- Botones de acción -->
+      <div class="flex gap-3 flex-shrink-0">
+        <button
+          id="cookie-reject"
+          class="rounded-full h-10 px-5 text-sm font-medium text-text-muted border border-outline-variant/30 hover:border-primary hover:text-primary transition-colors"
+        >
+          Rechazar
+        </button>
+        <button
+          id="cookie-accept"
+          class="rounded-full h-10 px-5 text-sm font-bold bg-[#32D74B] text-surface-container-lowest hover:scale-[1.02] transition-all duration-200"
+        >
+          Aceptar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  /**
+   * Inicializa el banner de cookies:
+   * - Verifica si el usuario ya dio consentimiento
+   * - Muestra el banner si no hay consentimiento previo
+   * - Guarda la decisión en localStorage
+   */
+  function initCookieConsent() {
+    const banner = document.getElementById("cookie-consent");
+    const acceptBtn = document.getElementById("cookie-accept");
+    const rejectBtn = document.getElementById("cookie-reject");
+    if (!banner || !acceptBtn || !rejectBtn) return;
+
+    // Verificar si ya hay consentimiento guardado
+    const consent = localStorage.getItem("cookie-consent");
+    if (!consent) {
+      banner.classList.remove("hidden");
+    }
+
+    // Aceptar cookies
+    acceptBtn.addEventListener("click", () => {
+      localStorage.setItem("cookie-consent", "accepted");
+      banner.classList.add("hidden");
+    });
+
+    // Rechazar cookies
+    rejectBtn.addEventListener("click", () => {
+      localStorage.setItem("cookie-consent", "rejected");
+      banner.classList.add("hidden");
+    });
+  }
+
+  // Inicializar en carga de página y en transiciones de Astro
+  document.addEventListener("astro:page-load", initCookieConsent);
+  initCookieConsent();
+</script>

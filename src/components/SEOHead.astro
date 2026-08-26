@@ -1,0 +1,76 @@
+---
+/**
+ * SEOHead.astro - Componente de meta tags SEO
+ *
+ * Genera automáticamente:
+ * - Title tag y meta description
+ * - Open Graph tags (Facebook, LinkedIn)
+ * - Twitter Cards
+ * - Canonical URL
+ * - Schema.org JSON-LD para Organization
+ * - Robots meta tag
+ * - Theme color
+ *
+ * Recibe props: title, description, image (opcional)
+ */
+import { siteConfig } from "../data/site";
+
+/** Props del componente SEO */
+interface Props {
+  /** Título de la página */
+  title: string;
+  /** Descripción meta de la página */
+  description: string;
+  /** URL de imagen para compartir (opcional) */
+  image?: string;
+}
+
+const { title, description, image } = Astro.props;
+
+/** Resolver URL completa de la imagen (relativa o absoluta) */
+const resolvedImage = image?.startsWith("http") ? image : `${siteConfig.url}${image}`;
+
+/** URL canónica de la página actual */
+const canonical = `${siteConfig.url}${Astro.url.pathname}`;
+---
+
+<!-- Title y meta tags básicos -->
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+
+<!-- Open Graph (Facebook, LinkedIn, etc.) -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonical} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={resolvedImage} />
+<meta property="og:locale" content="es_ES" />
+<meta property="og:site_name" content="Electric Apple" />
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={resolvedImage} />
+
+<!-- Meta tags adicionales -->
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#B535F6" />
+<meta name="author" content="Electric Apple" />
+
+<!-- Schema.org JSON-LD para Organization -->
+<script
+  is:inline
+  type="application/ld+json"
+  set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Electric Apple",
+    description: siteConfig.description,
+    url: siteConfig.url,
+    email: siteConfig.email,
+    logo: `${siteConfig.url}/favicon.svg`,
+    sameAs: [],
+  })}
+/>

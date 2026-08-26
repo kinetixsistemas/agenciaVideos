@@ -1,0 +1,80 @@
+---
+/**
+ * projects.astro - Página de proyectos/portfolio
+ *
+ * Muestra el portfolio de proyectos con layout inmersivo:
+ * - Cabecera con título display-xl
+ * - Lista de proyectos con layout alternado
+ *   (imagen 3/5 + info 2/5)
+ * - Cada proyecto tiene tags, descripción y CTA
+ * - CTA final de conversión
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { projects } from "../data/projects";
+---
+
+<BaseLayout
+  title="Proyectos - Electric Apple"
+  description="Una galería curada de experiencias digitales diseñadas con precisión, que conectan energía brutalista con modernismo de alta gama."
+>
+  <!-- Canvas principal -->
+  <main class="flex-grow pt-[160px] pb-[var(--section-gap)] w-full">
+    <div class="max-w-[1440px] mx-auto px-[var(--page-margin-mobile)] md:px-[var(--page-margin-desktop)]">
+      <!-- Cabecera de la galería -->
+      <header class="mb-[var(--section-gap)] max-w-4xl">
+        <h1 class="font-display-xl text-display-xl text-text-primary mb-6 uppercase leading-tight">Obras<br /><span class="text-primary">Selectas</span></h1>
+        <p class="font-body-lg text-body-lg text-text-muted max-w-2xl">Una galería curada de experiencias digitales diseñadas con precisión, que conectan energía brutalista con modernismo de alta gama.</p>
+      </header>
+
+      <!-- Lista inmersiva de proyectos -->
+      <div class="flex flex-col gap-32">
+        {projects.map((project, index) => (
+          <section class="group relative rounded-[32px] overflow-hidden bg-surface-container-low border border-outline-variant/10 flex flex-col lg:flex-row h-auto lg:h-[600px]">
+            <!-- Imagen del proyecto (3/5 del ancho) -->
+            <div class={`w-full lg:w-3/5 h-[400px] lg:h-full relative overflow-hidden ${index % 2 === 0 ? 'order-1 lg:order-2' : 'order-1'}`}>
+              <div
+                class="absolute inset-0 bg-cover bg-center transform group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
+                style={`background-image: url('${project.image}')`}
+              ></div>
+              <!-- Overlay con botón play -->
+              <div class="absolute inset-0 bg-surface/20 group-hover:bg-transparent transition-colors duration-500 z-10 flex items-center justify-center">
+                <div class="w-20 h-20 rounded-full bg-surface/50 backdrop-blur-md flex items-center justify-center border border-text-muted/20 text-text-primary group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300">
+                  <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                </div>
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-[#131315] via-transparent to-transparent lg:hidden"></div>
+            </div>
+            <!-- Información del proyecto (2/5 del ancho) -->
+            <div class={`w-full lg:w-2/5 p-8 lg:p-16 flex flex-col justify-center ${index % 2 === 0 ? 'order-2 lg:order-1 glass-panel lg:border-r lg:border-outline-variant/10' : 'order-2 glass-panel lg:border-l lg:border-outline-variant/10'} z-20`}>
+              <!-- Tags de categoría -->
+              <div class="flex items-center gap-4 mb-6">
+                <span class="px-4 py-2 rounded-full bg-surface-container-highest text-primary font-label-md text-label-md uppercase tracking-wider text-xs border border-outline-variant/20">{project.category}</span>
+                <span class="px-4 py-2 rounded-full bg-surface-container-highest text-primary font-label-md text-label-md uppercase tracking-wider text-xs border border-outline-variant/20">{project.tag}</span>
+              </div>
+              <h2 class="font-headline-lg text-headline-lg text-text-primary mb-6">{project.title}</h2>
+              <p class="font-body-lg text-body-lg text-text-muted mb-10">{project.description}</p>
+              <a class="inline-flex w-fit items-center justify-center gap-2 bg-[#32D74B] text-[#131315] font-button text-button rounded-full px-8 py-4 hover:scale-[1.02] transition-transform duration-200 active:scale-95 neon-glow-emerald" href="/contact">
+                {project.cta} <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">arrow_forward</span>
+              </a>
+            </div>
+          </section>
+        ))}
+      </div>
+    </div>
+  </main>
+
+  <!-- CTA final -->
+  <section class="py-[var(--section-gap)] px-[var(--page-margin-mobile)] md:px-[var(--page-margin-desktop)] bg-surface-container-highest w-full border-t border-outline-variant/10">
+    <div class="max-w-[1024px] mx-auto text-center flex flex-col items-center gap-8">
+      <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg leading-tight text-text-primary">
+        ¿Listo para crear el <span class="text-[#B535F6]">tuyo?</span>
+      </h2>
+      <p class="font-body-lg text-body-lg text-text-muted max-w-2xl">
+        Asociado con Electric Apple para llevar tus conceptos técnicos y visuales más ambiciosos a la vida. No hacemos promedios.
+      </p>
+      <a class="mt-8 inline-flex items-center justify-center px-12 py-6 rounded-[32px] bg-[#32D74B] text-[#131315] font-button text-[20px] font-bold hover:scale-[1.05] transition-transform duration-300 neon-glow-emerald" href="/contact">
+        Consultar a un Experto
+      </a>
+    </div>
+  </section>
+</BaseLayout>

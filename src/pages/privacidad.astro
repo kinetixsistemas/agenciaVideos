@@ -1,0 +1,81 @@
+---
+/**
+ * privacidad.astro - Página de Política de Privacidad
+ *
+ * Contiene la política de tratamiento de datos:
+ * 1. Información que Recopilamos
+ * 2. Uso de la Información
+ * 3. Cookies
+ * 4. Compartición de Datos
+ * 5. Tus Derechos
+ * 6. Contacto
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Política de Privacidad - Electric Apple"
+  description="Política de privacidad y tratamiento de datos del estudio digital Electric Apple."
+>
+  <section class="py-24 lg:py-32">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
+      <!-- Título principal -->
+      <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-12">
+        Política de Privacidad
+      </h1>
+
+      <div class="space-y-10">
+        <!-- 1. Información que Recopilamos -->
+        <div>
+          <h2 class="text-xl font-bold mb-3">1. Información que Recopilamos</h2>
+          <p class="text-text-muted leading-relaxed">
+            Recopilamos información que usted nos proporciona directamente (nombre, email, empresa) y datos recopilados automáticamente (dirección IP, tipo de navegador, páginas visitadas) a través de cookies y herramientas de análisis.
+          </p>
+        </div>
+
+        <!-- 2. Uso de la Información -->
+        <div>
+          <h2 class="text-xl font-bold mb-3">2. Uso de la Información</h2>
+          <p class="text-text-muted leading-relaxed">
+            Utilizamos su información para: responder a consultas, entregar servicios contratados, mejorar nuestras ofertas, enviar comunicaciones de marketing (con consentimiento) y cumplir con obligaciones legales.
+          </p>
+        </div>
+
+        <!-- 3. Cookies -->
+        <div>
+          <h2 class="text-xl font-bold mb-3">3. Cookies</h2>
+          <p class="text-text-muted leading-relaxed">
+            Utilizamos cookies para mejorar su experiencia de navegación, analizar el tráfico y personalizar el contenido. Puede gestionar sus preferencias de cookies a través de nuestro banner de consentimiento.
+          </p>
+        </div>
+
+        <!-- 4. Compartición de Datos -->
+        <div>
+          <h2 class="text-xl font-bold mb-3">4. Compartición de Datos</h2>
+          <p class="text-text-muted leading-relaxed">
+            No vendemos su información personal. Podemos compartir datos con proveedores de servicios que nos asisten en nuestras operaciones, cuando lo requiera la ley, o con su consentimiento explícito.
+          </p>
+        </div>
+
+        <!-- 5. Tus Derechos -->
+        <div>
+          <h2 class="text-xl font-bold mb-3">5. Tus Derechos</h2>
+          <p class="text-text-muted leading-relaxed">
+            Usted tiene derecho a acceder, rectificar o eliminar sus datos personales. También puede oponerse al procesamiento o retirar su consentimiento en cualquier momento. Contáctenos para ejercer estos derechos.
+          </p>
+        </div>
+
+        <!-- 6. Contacto -->
+        <div>
+          <h2 class="text-xl font-bold mb-3">6. Contacto</h2>
+          <p class="text-text-muted leading-relaxed">
+            Para consultas relacionadas con la privacidad, contáctenos en
+            <a href="mailto:hola@electricapple.agency" class="text-primary hover:text-primary-container transition-colors"
+              >hola@electricapple.agency</a
+            >.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

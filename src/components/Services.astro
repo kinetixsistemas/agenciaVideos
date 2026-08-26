@@ -1,0 +1,216 @@
+---
+/**
+ * Services.astro - Sección de servicios principales
+ *
+ * Muestra los tres servicios de la agencia en layout zigzag:
+ * 1. Edición de Videos - Efecto parallax con imagen
+ * 2. Diseño Gráfico - Layout invertido
+ * 3. Páginas Web - Layout normal
+ *
+ * Usa GSAP ScrollTrigger para animaciones de entrada
+ * y efectos de parallax en las imágenes.
+ *
+ * @component
+ */
+
+/** Datos de los servicios */
+const services = [
+  {
+    id: "edicion",
+    title: "Edición de Videos",
+    description: "Transformamos footage crudo en narrativas cinematográficas que cautivan. Desde color grading profesional hasta motion graphics de última generación.",
+    tags: ["After Effects", "Premiere Pro", "DaVinci Resolve"],
+    image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=1200&h=675&fit=crop&q=80",
+    icon: "videocam",
+  },
+  {
+    id: "diseno",
+    title: "Diseño Gráfico",
+    description: "Creamos identidades visuales que definen marcas. Logos, sistemas de diseño, packaging y material gráfico que comunica con impacto.",
+    tags: ["Illustrator", "Photoshop", "Figma"],
+    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&h=675&fit=crop&q=80",
+    icon: "palette",
+  },
+  {
+    id: "web",
+    title: "Páginas Web",
+    description: "Desarrollamos sitios web de alto rendimiento con tecnologías modernas. Desde landing pages hasta e-commerce completos.",
+    tags: ["React", "Next.js", "Astro"],
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=675&fit=crop&q=80",
+    icon: "code",
+  },
+];
+---
+
+<!-- Sección de servicios con layout zigzag -->
+<section
+  id="servicios"
+  class="py-24 md:py-32 px-6 md:px-12 max-w-[1440px] mx-auto w-full"
+  aria-labelledby="services-heading"
+>
+  <!-- Título de sección -->
+  <div class="text-center mb-16 md:mb-24">
+    <span class="label-md text-sm text-[#32D74B] uppercase tracking-widest mb-4 block">Lo que hacemos</span>
+    <h2
+      id="services-heading"
+      class="heading-lg text-3xl md:text-4xl lg:text-5xl text-text-primary mb-6"
+    >
+      Nuestros Servicios
+    </h2>
+    <p class="body-lg text-lg text-text-muted max-w-2xl mx-auto">
+      Soluciones digitales completas para marcas que buscan destacar.
+    </p>
+  </div>
+
+  <!-- Servicios con layout zigzag -->
+  <div class="flex flex-col gap-24 md:gap-32">
+    {services.map((service, index) => (
+      <div
+        class={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center service-item`}
+        data-index={index}
+      >
+        <!-- Imagen -->
+        <div class={`relative rounded-3xl overflow-hidden group ${index % 2 !== 0 ? 'lg:order-2' : 'lg:order-1'}`}>
+          <div class="aspect-video relative">
+            <img
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 service-image"
+              src={service.image}
+              alt={`Ejemplo de ${service.title} - ${service.description.substring(0, 60)}...`}
+              loading="lazy"
+              width="1200"
+              height="675"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-surface/80 via-transparent to-transparent"></div>
+            <!-- Icono flotante -->
+            <div class="absolute top-6 left-6 w-14 h-14 rounded-full bg-[#32D74B] flex items-center justify-center shadow-[0_4px_20px_rgba(50,215,75,0.4)]">
+              <span class="material-symbols-outlined text-2xl text-surface-container-lowest" style="font-variation-settings: 'FILL' 0;">{service.icon}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contenido -->
+        <div class={`flex flex-col gap-5 ${index % 2 !== 0 ? 'lg:order-1 lg:items-end lg:text-right' : 'lg:order-2'}`}>
+          <!-- Número de servicio -->
+          <span class="text-[#32D74B] heading-xl text-5xl md:text-6xl opacity-30" aria-hidden="true">
+            0{index + 1}
+          </span>
+
+          <h3 class="heading-lg text-2xl md:text-3xl lg:text-4xl text-text-primary">
+            {service.title}
+          </h3>
+
+          <p class="body-lg text-lg text-text-muted max-w-lg">
+            {service.description}
+          </p>
+
+          <!-- Tags -->
+          <div class={`flex flex-wrap gap-2 ${index % 2 !== 0 ? 'lg:justify-end' : ''}`}>
+            {service.tags.map((tag) => (
+              <span class="px-4 py-2 rounded-full bg-surface-container-high text-primary label-md text-sm border border-outline-variant/20">
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <!-- CTA -->
+          <a
+            class={`mt-4 btn-primary ${index % 2 !== 0 ? 'lg:self-end' : ''}`}
+            href={`/services#${service.id}`}
+            aria-label={`Ver más sobre ${service.title}`}
+          >
+            Ver Más
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  /**
+   * Animaciones de scroll para la sección de servicios usando GSAP ScrollTrigger.
+   * Cada servicio aparece con efecto zigzag desde los lados.
+   * Las imágenes tienen efecto de parallax sutil.
+   */
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initServicesAnimations() {
+    const serviceItems = document.querySelectorAll('.service-item');
+
+    if (serviceItems.length === 0) return;
+
+    // Verificar preferencia de reduced-motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    serviceItems.forEach((item, index) => {
+      const isEven = index % 2 === 0;
+      const image = item.querySelector('.service-image') as HTMLElement;
+      const content = item.querySelector('div:last-child') as HTMLElement;
+
+      // Animación de entrada del servicio completo
+      gsap.from(item, {
+        x: isEven ? -80 : 80,
+        y: 60,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: item,
+          start: "top 85%",
+          end: "top 50%",
+          toggleActions: "play none none none",
+        },
+      });
+
+      // Parallax sutil en la imagen
+      if (image) {
+        gsap.from(image, {
+          y: 40,
+          scale: 1.05,
+          ease: "none",
+          scrollTrigger: {
+            trigger: item,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+      }
+    });
+
+    // Animación del título de sección
+    const sectionTitle = document.querySelector('#services-heading');
+    if (sectionTitle) {
+      gsap.from(sectionTitle, {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionTitle,
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+      });
+    }
+  }
+
+  document.addEventListener("astro:page-load", initServicesAnimations);
+  initServicesAnimations();
+</script>
+
+<style>
+  /* Estilos iniciales para animaciones GSAP */
+  .service-item {
+    will-change: transform, opacity;
+  }
+
+  .service-image {
+    will-change: transform;
+  }
+</style>

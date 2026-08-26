@@ -1,0 +1,105 @@
+---
+/**
+ * about.astro - Página "Nosotros"
+ *
+ * Contiene tres secciones principales:
+ * 1. Manifiesto - Declaración de principios de la agencia
+ * 2. Estadísticas - Números clave (50+ proyectos, 3 Awwwards, 0 fallos)
+ * 3. Equipo - Perfiles B&W con hover reveal
+ *
+ * Usa display-xl para el título principal y
+ * grid 12 columnas para layout asimétrico.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Nosotros - Electric Apple"
+  description="Visión en Movimiento. Ingeniamos ventajas competitivas a través de producción cinematográfica de élite e ingeniería digital brutalista."
+>
+  <!-- Contenido principal -->
+  <main class="flex-grow pt-32 pb-[var(--section-gap)] px-[var(--page-margin-mobile)] md:px-[var(--page-margin-desktop)] max-w-[1440px] mx-auto w-full">
+    <!-- Sección Manifiesto -->
+    <section class="mb-[var(--section-gap)] pt-16">
+      <h1 class="font-display-xl text-display-xl mb-12 uppercase text-primary leading-none tracking-tighter">
+        Arquitectamos<br />
+        <span class="text-text-primary">Verdades Digitales</span>
+      </h1>
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-[var(--gutter)]">
+        <div class="col-span-1 md:col-span-8 md:col-start-5">
+          <p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">
+            Electric Apple es un consorcio élite de brutalistas del diseño y puristas del código. Desmantelamos convenciones mediocres y engineeramos experiencias cinematográficas de alta fidelidad que exigen atención. Nuestro manifiesto es simple: sin compromisos, sin plantillas, pura innovación agresiva. Construimos espacios digitales que se sienten físicamente impactantes.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Estadísticas -->
+    <section class="mb-[var(--section-gap)]">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-[var(--component-gap)] border-t border-b border-outline-variant/20 py-12">
+        <!-- Proyectos completados -->
+        <div class="flex flex-col items-center justify-center text-center p-8 bg-surface-container/50 rounded-[32px] backdrop-blur-md">
+          <span class="font-display-xl text-[80px] leading-none text-[#B535F6] mb-4">50+</span>
+          <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Proyectos</span>
+        </div>
+        <!-- Premios Awwwards -->
+        <div class="flex flex-col items-center justify-center text-center p-8 bg-surface-container/50 rounded-[32px] backdrop-blur-md">
+          <span class="font-display-xl text-[80px] leading-none text-[#B535F6] mb-4">3</span>
+          <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Awwwards</span>
+        </div>
+        <!-- Fallos de entrega -->
+        <div class="flex flex-col items-center justify-center text-center p-8 bg-surface-container/50 rounded-[32px] backdrop-blur-md">
+          <span class="font-display-xl text-[80px] leading-none text-[#B535F6] mb-4">0</span>
+          <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Entregas Fallidas</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Equipo -->
+    <section>
+      <h2 class="font-headline-lg text-headline-lg mb-12 uppercase border-b border-outline-variant/20 pb-6">Los Arquitectos</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[var(--gutter)]">
+        <!-- Miembro del equipo 1 -->
+        <div class="team-card relative group rounded-[32px] overflow-hidden bg-surface-container aspect-[4/5] cursor-pointer">
+          <img class="w-full h-full object-cover grayscale transition-transform duration-500 group-hover:scale-105" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=750&fit=crop&q=80" alt="Alex Mercer - Director Creativo" />
+          <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
+          <div class="team-info absolute bottom-0 left-0 w-full p-8 bg-surface/90 backdrop-blur-xl border-t border-outline-variant/10">
+            <h3 class="font-headline-md text-headline-md text-primary mb-1">Alex Mercer</h3>
+            <p class="font-label-md text-label-md text-text-muted uppercase tracking-wider">Director Creativo</p>
+          </div>
+        </div>
+        <!-- Miembro del equipo 2 -->
+        <div class="team-card relative group rounded-[32px] overflow-hidden bg-surface-container aspect-[4/5] cursor-pointer md:mt-12">
+          <img class="w-full h-full object-cover grayscale transition-transform duration-500 group-hover:scale-105" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&h=750&fit=crop&q=80" alt="Sarah Chen - Ingeniera Principal" />
+          <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
+          <div class="team-info absolute bottom-0 left-0 w-full p-8 bg-surface/90 backdrop-blur-xl border-t border-outline-variant/10">
+            <h3 class="font-headline-md text-headline-md text-primary mb-1">Sarah Chen</h3>
+            <p class="font-label-md text-label-md text-text-muted uppercase tracking-wider">Ingeniera Principal</p>
+          </div>
+        </div>
+        <!-- Miembro del equipo 3 -->
+        <div class="team-card relative group rounded-[32px] overflow-hidden bg-surface-container aspect-[4/5] cursor-pointer">
+          <img class="w-full h-full object-cover grayscale transition-transform duration-500 group-hover:scale-105" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&h=750&fit=crop&q=80" alt="Marcus Vance - Líder de Motion" />
+          <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
+          <div class="team-info absolute bottom-0 left-0 w-full p-8 bg-surface/90 backdrop-blur-xl border-t border-outline-variant/10">
+            <h3 class="font-headline-md text-headline-md text-primary mb-1">Marcus Vance</h3>
+            <p class="font-label-md text-label-md text-text-muted uppercase tracking-wider">Líder de Motion</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  /* Efecto hover para tarjetas del equipo: revelar info al pasar mouse */
+  .team-card:hover .team-info {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .team-info {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease-in-out;
+  }
+</style>
