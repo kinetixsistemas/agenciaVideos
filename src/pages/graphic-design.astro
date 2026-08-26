@@ -1,0 +1,423 @@
+---
+/**
+ * graphic-design.astro - Página de Diseño Gráfico
+ *
+ * Estructura semántica completa:
+ * - Hero con imagen de fondo y CTA
+ * - Galería de trabajos destacados
+ * - Cards de precios con 3 planes
+ * - FAQ con acordeón interactivo
+ * - CTA final de conversión
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+/** Datos de la galería */
+const gallery = [
+  {
+    title: "Neon Nights",
+    category: "Identidad de Marca",
+    image: "https://images.unsplash.com/photo-1563089145-599997674d42?w=800&h=600&fit=crop&q=80",
+    alt: "Sistema de identidad visual completo para marca nocturna con estética neón"
+  },
+  {
+    title: "Aura Tech",
+    category: "UI/UX Design",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&q=80",
+    alt: "Interfaz de usuario moderna para plataforma tecnológica con dashboard intuitivo"
+  },
+  {
+    title: "Lumina Motors",
+    category: "Branding",
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&h=600&fit=crop&q=80",
+    alt: "Sistema de marca para compañía automotriz de lujo con elegancia minimalista"
+  },
+  {
+    title: "Green Valley",
+    category: "Packaging",
+    image: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&h=600&fit=crop&q=80",
+    alt: "Diseño de packaging orgánico para marca de alimentos saludables"
+  },
+  {
+    title: "Fitness Pro",
+    category: "Aplicación Móvil",
+    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop&q=80",
+    alt: "Diseño de interfaz móvil para aplicación de fitness con gráficos dinámicos"
+  },
+  {
+    title: "Urban Eats",
+    category: "Menú Digital",
+    image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop&q=80",
+    alt: "Diseño de menú digital para restaurante urbano con estilo moderno"
+  }
+];
+
+/** Planes de precios */
+const plans = [
+  {
+    name: "Básico",
+    price: "$2,000",
+    period: "por proyecto",
+    description: "Para emprendedores que necesitan identidad visual inicial.",
+    features: [
+      "Logo y variaciones",
+      "Paleta de colores",
+      "Tipografía principal",
+      "Guía de marca básica",
+      "5 aplicaciones",
+      "Entrega en 7 días"
+    ],
+    cta: "Elegir Básico",
+    popular: false,
+    icon: "palette"
+  },
+  {
+    name: "Profesional",
+    price: "$6,000",
+    period: "por proyecto",
+    description: "Sistema de marca completo para empresas en crecimiento.",
+    features: [
+      "Sistema de logo completo",
+      "Guía de marca extendida",
+      "20+ aplicaciones",
+      "Diseño de packaging",
+      "Templates editables",
+      "Manual de usuario",
+      "Entrega en 14 días"
+    ],
+    cta: "Elegir Profesional",
+    popular: true,
+    icon: "branding_watermark"
+  },
+  {
+    name: "Enterprise",
+    price: "$15,000",
+    period: "por proyecto",
+    description: "Identidad corporativa completa con tous les elements.",
+    features: [
+      "Brandbook completo 100+ páginas",
+      "Sistema de diseño escalable",
+      "Identidad animada",
+      "Motion design guidelines",
+      "Asset library completa",
+      "Consultoría estratégica",
+      "Soporte 90 días"
+    ],
+    cta: "Elegir Enterprise",
+    popular: false,
+    icon: "auto_awesome"
+  }
+];
+
+/** FAQ */
+const faq = [
+  {
+    question: "¿Qué incluye una identidad de marca completa?",
+    answer: "Incluye logo principal y variaciones, paleta de colores, tipografía, guía de estilo, aplicaciones en diferentes medios, y archivos finales en todos los formatos necesarios para impresión y digital."
+  },
+  {
+    question: "¿Trabajan con marcas existentes?",
+    answer: "Sí, realizamos renovaciones y actualizaciones de marcas existentes. Analizamos la identidad actual antes de proponer cualquier cambio para preservar el reconocimiento de marca."
+  },
+  {
+    question: "¿Cuánto tiempo toma diseñar una marca?",
+    answer: "Un logo básico puede estar listo en 1-2 semanas. Un sistema de marca completo puede tomar 4-8 semanas dependiendo de la complejidad y el alcance del proyecto."
+  },
+  {
+    question: "¿Entregan archivos editables?",
+    answer: "Sí, entregamos archivos fuente en formato AI, PSD, Figma y PDF editables. También incluimos archivos finales en PNG, SVG, JPG y PDF para diferentes usos."
+  },
+  {
+    question: "¿Ofrecen soporte post-entrega?",
+    answer: "Sí, ofrecemos planes de soporte mensual para actualizaciones, nuevas aplicaciones y consultoría continua sobre la evolución de tu marca."
+  }
+];
+---
+
+<BaseLayout
+  title="Diseño Gráfico - Electric Apple"
+  description="Servicio profesional de diseño gráfico e identidad visual. Creamos marcas que exigen atención y definen la vanguardia."
+>
+  <main>
+    <!-- HERO -->
+    <section
+      class="relative min-h-screen flex items-center justify-center overflow-hidden"
+      aria-labelledby="design-hero-heading"
+    >
+      <div class="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1920&h=1080&fit=crop&q=80"
+          alt=""
+          class="w-full h-full object-cover hero-bg-image"
+          aria-hidden="true"
+        />
+        <div class="absolute inset-0 bg-gradient-to-b from-surface/70 via-surface/50 to-surface/95"></div>
+      </div>
+
+      <!-- Elementos decorativos -->
+      <div class="absolute top-32 left-10 w-80 h-80 bg-[#B535F6]/10 rounded-full blur-3xl" aria-hidden="true"></div>
+      <div class="absolute bottom-32 right-10 w-96 h-96 bg-[#32D74B]/10 rounded-full blur-3xl" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-[1200px] mx-auto w-full text-center px-6 md:px-12 hero-content">
+        <div class="inline-flex items-center gap-2 bg-[#B535F6]/10 border border-[#B535F6]/30 rounded-full px-5 py-2 mb-8">
+          <span class="material-symbols-outlined text-[#B535F6] text-lg" style="font-variation-settings: 'FILL' 0;">design_services</span>
+          <span class="label-md text-sm text-[#B535F6] uppercase tracking-wider">Identidad Visual</span>
+        </div>
+
+        <h1
+          id="design-hero-heading"
+          class="heading-xl text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white max-w-5xl mx-auto mb-6"
+          style="text-shadow: 0 4px 40px rgba(0,0,0,0.8);"
+        >
+          Diseño <span class="text-[#B535F6]">Gráfico</span>
+        </h1>
+
+        <p
+          class="body-lg text-xl md:text-2xl text-white/90 max-w-2xl mx-auto mb-10"
+          style="text-shadow: 0 2px 20px rgba(0,0,0,0.9);"
+        >
+          Identidades visuales sin disculpas. Marcas que dominan el espacio y definen la vanguardia.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a class="btn-primary text-lg px-10 py-5" href="/contact">
+            Transformar tu Marca
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_forward</span>
+          </a>
+          <a
+            class="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-full border-2 border-white/30 text-white font-semibold hover:bg-white/10 transition-all duration-300"
+            href="#gallery"
+          >
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">collections</span>
+            Ver Portfolio
+          </a>
+        </div>
+      </div>
+
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 opacity-70" aria-hidden="true">
+        <span class="label-md text-xs text-white/60 uppercase tracking-widest">Scroll</span>
+        <div class="w-6 h-10 rounded-full border-2 border-white/30 flex justify-center pt-2">
+          <div class="w-1 h-3 bg-white/60 rounded-full animate-bounce"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERÍA -->
+    <section
+      id="gallery"
+      class="py-24 md:py-32 px-6 md:px-12 bg-surface"
+      aria-labelledby="gallery-heading"
+    >
+      <div class="max-w-[1440px] mx-auto w-full">
+        <header class="text-center mb-16 md:mb-20">
+          <span class="label-md text-sm text-[#B535F6] uppercase tracking-widest mb-4 block">Portfolio</span>
+          <h2 id="gallery-heading" class="heading-lg text-3xl md:text-4xl lg:text-5xl text-text-primary mb-6">
+            Trabajos Destacados
+          </h2>
+          <p class="body-lg text-lg text-text-muted max-w-2xl mx-auto">
+            Identidades visuales que han transformado marcas y comunicado con impacto.
+          </p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {gallery.map((item, index) => (
+            <article
+              class="group relative rounded-3xl overflow-hidden glass-panel hover-lift-card cursor-pointer gallery-item"
+              style={`animation-delay: ${index * 100}ms`}
+            >
+              <div class="aspect-[4/3] relative overflow-hidden">
+                <img
+                  src={item.image}
+                  alt={item.alt}
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  loading="lazy"
+                  width="800"
+                  height="600"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-surface/90 via-surface/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="absolute inset-0 flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span class="label-md text-xs text-[#B535F6] uppercase tracking-widest mb-2">{item.category}</span>
+                  <h3 class="heading-md text-xl text-white">{item.title}</h3>
+                </div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-[#B535F6] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-75 group-hover:scale-100 shadow-[0_0_30px_rgba(181,53,246,0.5)]">
+                  <span class="material-symbols-outlined text-3xl text-white" style="font-variation-settings: 'FILL' 1;">visibility</span>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- PRECIOS -->
+    <section
+      class="py-24 md:py-32 px-6 md:px-12 bg-surface-container-lowest"
+      aria-labelledby="pricing-heading"
+    >
+      <div class="max-w-[1440px] mx-auto w-full">
+        <header class="text-center mb-16 md:mb-20">
+          <span class="label-md text-sm text-[#B535F6] uppercase tracking-widest mb-4 block">Precios</span>
+          <h2 id="pricing-heading" class="heading-lg text-3xl md:text-4xl lg:text-5xl text-text-primary mb-6">
+            Planes de Diseño
+          </h2>
+          <p class="body-lg text-lg text-text-muted max-w-2xl mx-auto">
+            Invierte en una identidad visual que eleve tu marca al siguiente nivel.
+          </p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {plans.map((plan) => (
+            <article
+              class={`relative glass-panel p-8 rounded-3xl border ${
+                plan.popular
+                  ? 'border-[#B535F6]/50 shadow-[0_0_40px_rgba(181,53,246,0.15)]'
+                  : 'border-outline-variant/20'
+              } hover-lift-card pricing-card`}
+              aria-labelledby={`plan-${plan.name}`}
+            >
+              {plan.popular && (
+                <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+                  <span class="bg-[#B535F6] text-white px-5 py-2 rounded-full label-md text-xs uppercase tracking-wider">
+                    Más Popular
+                  </span>
+                </div>
+              )}
+              <div class="text-center mb-8">
+                <div class="w-14 h-14 rounded-full bg-[#B535F6]/10 flex items-center justify-center mx-auto mb-4">
+                  <span class="material-symbols-outlined text-2xl text-[#B535F6]" style="font-variation-settings: 'FILL' 0;">{plan.icon}</span>
+                </div>
+                <h3 id={`plan-${plan.name}`} class="heading-md text-2xl text-text-primary mb-2">{plan.name}</h3>
+                <div class="mb-3">
+                  <span class={`heading-xl text-4xl ${plan.popular ? 'text-[#B535F6]' : 'text-[#32D74B]'}`}>{plan.price}</span>
+                  <span class="body-md text-text-muted ml-2 text-sm">{plan.period}</span>
+                </div>
+                <p class="body-md text-text-muted text-sm">{plan.description}</p>
+              </div>
+              <ul class="space-y-3 mb-8" role="list">
+                {plan.features.map((feature) => (
+                  <li class="flex items-start gap-3 text-text-primary body-md text-sm">
+                    <span class="material-symbols-outlined text-[#B535F6] text-lg mt-0.5 flex-shrink-0" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              <a
+                class={`w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold transition-all duration-300 ${
+                  plan.popular
+                    ? 'bg-[#B535F6] text-white hover:scale-[1.02] shadow-[0_4px_20px_rgba(181,53,246,0.4)]'
+                    : 'border-2 border-[#B535F6] text-[#B535F6] hover:bg-[#B535F6] hover:text-white'
+                }`}
+                href="/contact"
+                aria-label={`${plan.cta} - plan ${plan.name}`}
+              >
+                {plan.cta}
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_forward</span>
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section
+      class="py-24 md:py-32 px-6 md:px-12"
+      aria-labelledby="faq-heading"
+    >
+      <div class="max-w-[800px] mx-auto w-full">
+        <header class="text-center mb-16">
+          <span class="label-md text-sm text-[#B535F6] uppercase tracking-widest mb-4 block">FAQ</span>
+          <h2 id="faq-heading" class="heading-lg text-3xl md:text-4xl text-text-primary mb-6">
+            Preguntas Frecuentes
+          </h2>
+        </header>
+        <div class="space-y-4" role="list">
+          {faq.map((item, index) => (
+            <div class="glass-panel rounded-2xl border border-outline-variant/20 overflow-hidden faq-item" role="listitem">
+              <button
+                class="w-full px-6 py-5 text-left flex justify-between items-center gap-4 hover:bg-surface-container-high/30 transition-colors"
+                aria-expanded="false"
+                aria-controls={`faq-answer-${index}`}
+              >
+                <span class="heading-md text-base md:text-lg text-text-primary">{item.question}</span>
+                <span class="material-symbols-outlined text-[#B535F6] transform transition-transform duration-300 flex-shrink-0">expand_more</span>
+              </button>
+              <div id={`faq-answer-${index}`} class="faq-answer hidden px-6 pb-6" role="region">
+                <p class="body-md text-text-muted leading-relaxed">{item.answer}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section
+      class="py-24 md:py-32 px-6 md:px-12 bg-surface-container-lowest"
+      aria-labelledby="cta-heading"
+    >
+      <div class="max-w-[1000px] mx-auto w-full text-center">
+        <h2 id="cta-heading" class="heading-lg text-3xl md:text-4xl lg:text-5xl text-text-primary mb-6">
+          ¿Listo para transformar tu marca?
+        </h2>
+        <p class="body-lg text-lg text-text-muted max-w-2xl mx-auto mb-10">
+          Nuestro equipo de diseñadores está listo para crear una identidad visual que eleve tu marca al siguiente nivel.
+        </p>
+        <a class="btn-primary text-lg px-10 py-5" href="/contact">
+          Solicitar Propuesta Creativa
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_forward</span>
+        </a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initDesignPage() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const heroContent = document.querySelector('.hero-content');
+    const heroBg = document.querySelector('.hero-bg-image');
+
+    if (heroContent) {
+      const tl = gsap.timeline({ delay: 0.2 });
+      tl.from(heroContent.querySelector('h1'), { y: 60, opacity: 0, duration: 1, ease: "power3.out" })
+        .from(heroContent.querySelector('p'), { y: 40, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.6")
+        .from(heroContent.querySelectorAll('.btn-primary, a[href="#gallery"]'), { y: 30, opacity: 0, scale: 0.9, duration: 0.6, ease: "back.out(1.7)", stagger: 0.15 }, "-=0.4");
+    }
+
+    if (heroBg) {
+      gsap.to(heroBg, { y: 200, scale: 1.1, ease: "none", scrollTrigger: { trigger: heroBg.closest('section'), start: "top top", end: "bottom top", scrub: true } });
+    }
+
+    gsap.from('.gallery-item', { y: 60, opacity: 0, duration: 0.8, stagger: 0.12, ease: "power3.out", scrollTrigger: { trigger: '#gallery', start: "top 80%", toggleActions: "play none none none" } });
+    gsap.from('.pricing-card', { y: 80, opacity: 0, duration: 0.8, stagger: 0.15, ease: "power3.out", scrollTrigger: { trigger: '[aria-labelledby="pricing-heading"]', start: "top 80%", toggleActions: "play none none none" } });
+
+    document.querySelectorAll('.faq-item button').forEach((button) => {
+      button.addEventListener('click', () => {
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        const answer = button.nextElementSibling;
+        const icon = button.querySelector('.material-symbols-outlined');
+        document.querySelectorAll('.faq-item button').forEach((btn) => {
+          if (btn !== button) { btn.setAttribute('aria-expanded', 'false'); btn.nextElementSibling?.classList.add('hidden'); btn.querySelector('.material-symbols-outlined')?.classList.remove('rotate-180'); }
+        });
+        button.setAttribute('aria-expanded', (!isExpanded).toString());
+        answer?.classList.toggle('hidden');
+        icon?.classList.toggle('rotate-180');
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initDesignPage);
+  initDesignPage();
+</script>
+
+<style>
+  .faq-answer { transition: all 0.3s ease; }
+  .faq-item button:focus-visible { outline: 2px solid var(--color-primary); outline-offset: -2px; border-radius: 12px; }
+</style>

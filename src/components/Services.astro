@@ -22,6 +22,7 @@ const services = [
     tags: ["After Effects", "Premiere Pro", "DaVinci Resolve"],
     image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=1200&h=675&fit=crop&q=80",
     icon: "videocam",
+    href: "/video-editing"
   },
   {
     id: "diseno",
@@ -30,6 +31,7 @@ const services = [
     tags: ["Illustrator", "Photoshop", "Figma"],
     image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&h=675&fit=crop&q=80",
     icon: "palette",
+    href: "/graphic-design"
   },
   {
     id: "web",
@@ -38,6 +40,7 @@ const services = [
     tags: ["React", "Next.js", "Astro"],
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=675&fit=crop&q=80",
     icon: "code",
+    href: "/web-development"
   },
 ];
 ---
@@ -115,7 +118,7 @@ const services = [
           <!-- CTA -->
           <a
             class={`mt-4 btn-primary ${index % 2 !== 0 ? 'lg:self-end' : ''}`}
-            href={`/services#${service.id}`}
+            href={service.href}
             aria-label={`Ver más sobre ${service.title}`}
           >
             Ver Más

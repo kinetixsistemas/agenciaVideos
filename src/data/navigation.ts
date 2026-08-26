@@ -10,9 +10,9 @@ import type { NavItem } from "../types";
 /** Elementos del menú de navegación principal */
 export const mainNav: NavItem[] = [
   { label: "Inicio", href: "/" },
-  { label: "Edición de Videos", href: "/services#edicion-de-videos" },
-  { label: "Diseño Gráfico", href: "/services#diseno-grafico" },
-  { label: "Páginas Web", href: "/services#paginas-web" },
+  { label: "Edición de Videos", href: "/video-editing" },
+  { label: "Diseño Gráfico", href: "/graphic-design" },
+  { label: "Páginas Web", href: "/web-development" },
   { label: "Nosotros", href: "/about" },
   { label: "Contacto", href: "/contact" },
 ];

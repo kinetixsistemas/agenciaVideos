@@ -1,0 +1,221 @@
+---
+/**
+ * faq.astro - Página de Preguntas Frecuentes
+ *
+ * Muestra las preguntas más comunes con:
+ * - Categorías de preguntas
+ * - Acordeón interactivo
+ * - CTA de contacto
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+/** Categorías de FAQ */
+const faqCategories = [
+  {
+    category: "Servicios Generales",
+    questions: [
+      {
+        question: "¿Qué servicios ofrece Electric Apple?",
+        answer: "Ofrecemos servicios completos de producción de video, diseño gráfico e identidad visual, y desarrollo web de alto rendimiento. Nos especializamos en crear experiencias digitales que combinan estética brutalista con tecnología de vanguardia."
+      },
+      {
+        question: "¿Trabajan con empresas de todos los tamaños?",
+        answer: "Sí, trabajamos con desde emprendedores y startups hasta empresas establecidas. Nuestros paquetes son flexibles y pueden personalizarse según las necesidades y presupuesto de cada cliente."
+      },
+      {
+        question: "¿Cuál es el proceso de trabajo típico?",
+        answer: "Nuestro proceso sigue 4 fases: Consulta (entendemos tu visión), Planificación (definimos estrategia y alcance), Ejecución (nuestro equipo crea el producto), y Entrega (lanzamiento y soporte post-proyecto)."
+      }
+    ]
+  },
+  {
+    category: "Desarrollo Web",
+    questions: [
+      {
+        question: "¿Qué tecnologías utilizan para desarrollo web?",
+        answer: "Utilizamos tecnologías modernas como React, Next.js, Astro, TypeScript, Tailwind CSS, y para proyectos 3D/interactivos, WebGL y Three.js. Seleccionamos la mejor stack según los requerimientos específicos de cada proyecto."
+      },
+      {
+        question: "¿Cuánto tiempo toma desarrollar un sitio web?",
+        answer: "Depende de la complejidad del proyecto. Una landing page puede tomar 2-3 semanas, un sitio corporativo de 4-6 semanas, y plataformas más complejas pueden requerir 2-3 meses. Siempre proporcionamos un cronograma detallado en nuestra propuesta."
+      },
+      {
+        question: "¿Ofrecen mantenimiento después del lanzamiento?",
+        answer: "Sí, ofrecemos planes de mantenimiento mensual que incluyen actualizaciones de seguridad, monitoreo de rendimiento, soporte técnico y pequeñas modificaciones. Todos nuestros paquetes incluyen soporte inicial de 30 a 90 días."
+      }
+    ]
+  },
+  {
+    category: "Diseño Gráfico",
+    questions: [
+      {
+        question: "¿Qué incluye un servicio de identidad de marca?",
+        answer: "Nuestro servicio de identidad de marca incluye: conceptualización y diseño de logo, paleta de colores, tipografía, guía de estilo completa, aplicaciones en diferentes medios, y archivos finales en todos los formatos necesarios."
+      },
+      {
+        question: "¿Trabajan con marcas existentes o solo crean nuevas?",
+        answer: "Trabajamos tanto con marcas nuevas como con marcas existentes que necesitan una actualización o renovación. Realizamos un análisis completo de la marca actual antes de proponer cualquier cambio."
+      }
+    ]
+  },
+  {
+    category: "Producción de Video",
+    questions: [
+      {
+        question: "¿Qué tipo de videos producen?",
+        answer: "Producimos videos corporativos, comerciales, videos para redes sociales, motion graphics, animaciones, tutoriales, testimonios de clientes, y contenido promocional. Nos adaptamos al formato y estilo que mejor se comunique con tu audiencia."
+      },
+      {
+        question: "¿Necesito proporcionar el material de video?",
+        answer: "Puedes proporcionar tu propio material o podemos encargarnos de toda la producción, desde la filmación hasta la post-producción. Nuestro equipo cuenta con equipment profesional para grabaciones en locación o estudio."
+      },
+      {
+        question: "¿En qué formatos entregan los videos finales?",
+        answer: "Entregamos los videos en los formatos y resoluciones que necesites: MP4 (H.264/H.265), MOV, AVI, y optimizados para diferentes plataformas (YouTube, Instagram, TikTok, web, presentaciones)."
+      }
+    ]
+  },
+  {
+    category: "Presupuesto y Pagos",
+    questions: [
+      {
+        question: "¿Cómo determinan el precio de un proyecto?",
+        answer: "Nuestros precios se basan en el alcance del proyecto, complejidad técnica, tiempo estimado de desarrollo, y los recursos necesarios. Proporcionamos presupuestos detallados y transparentes después de una consulta inicial gratuita."
+      },
+      {
+        question: "¿Qué métodos de pago aceptan?",
+        answer: "Aceptamos transferencias bancarias, tarjetas de crédito/débito, y PayPal. Para proyectos grandes, ofrecemos planes de pago escalonados: 50% al inicio, 25% en la revisión intermedia, y 25% en la entrega final."
+      },
+      {
+        question: "¿Ofrecen descuentos para proyectos grandes?",
+        answer: "Sí, ofrecemos descuentos especiales para proyectos con alcance significativo o acuerdos a largo plazo. Contáctanos para discutir las opciones disponibles para tu proyecto específico."
+      }
+    ]
+  }
+];
+---
+
+<BaseLayout
+  title="Preguntas Frecuentes - Electric Apple"
+  description="Resolvemos tus dudas sobre nuestros servicios de diseño, desarrollo web y producción de video."
+>
+  <!-- Hero Section -->
+  <section class="relative min-h-[50vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-surface-container-lowest via-surface to-surface-container"></div>
+    
+    <div class="relative z-10 max-w-[1200px] mx-auto w-full text-center px-6 md:px-12 pt-32">
+      <span class="label-md text-sm text-[#32D74B] uppercase tracking-widest mb-6 block">Ayuda</span>
+      <h1 class="heading-xl text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white max-w-4xl mx-auto mb-6">
+        Preguntas <span class="text-[#32D74B]">Frecuentes</span>
+      </h1>
+      <p class="body-lg text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-10">
+        Encuentra respuestas a las preguntas más comunes sobre nuestros servicios y proceso de trabajo.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-24 md:py-32 px-6 md:px-12 max-w-[1200px] mx-auto w-full">
+    <div class="space-y-16">
+      {faqCategories.map((category) => (
+        <div>
+          <h2 class="heading-lg text-2xl md:text-3xl text-text-primary mb-8 pb-4 border-b border-outline-variant/20">
+            {category.category}
+          </h2>
+          
+          <div class="space-y-4">
+            {category.questions.map((item) => (
+              <div class="glass-panel rounded-2xl border border-outline-variant/20 overflow-hidden faq-item">
+                <button
+                  class="w-full px-6 md:px-8 py-5 text-left flex justify-between items-center gap-4 hover:bg-surface-container-high/30 transition-colors"
+                  aria-expanded="false"
+                >
+                  <span class="heading-md text-lg text-text-primary">{item.question}</span>
+                  <span class="material-symbols-outlined text-[#32D74B] transform transition-transform duration-300">
+                    expand_more
+                  </span>
+                </button>
+                
+                <div class="faq-answer hidden px-6 md:px-8 pb-6">
+                  <p class="body-md text-text-muted leading-relaxed">{item.answer}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-24 md:py-32 px-6 md:px-12 bg-surface-container-lowest">
+    <div class="max-w-[1200px] mx-auto w-full text-center">
+      <h2 class="heading-lg text-3xl md:text-4xl lg:text-5xl text-text-primary mb-6">
+        ¿No encontraste tu respuesta?
+      </h2>
+      <p class="body-lg text-lg text-text-muted max-w-2xl mx-auto mb-10">
+        Nuestro equipo está listo para responder cualquier pregunta adicional que tengas sobre nuestros servicios.
+      </p>
+      <a class="btn-primary text-lg px-10 py-5" href="/contact">
+        Contactar Ahora
+        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_forward</span>
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  /**
+   * Inicializa el acordeón de FAQ con toggle de apertura/cierre.
+   * Maneja el estado de aria-expanded y animaciones suaves.
+   */
+  function initFAQ() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach((item) => {
+      const button = item.querySelector('button');
+      const answer = item.querySelector('.faq-answer');
+      const icon = button?.querySelector('.material-symbols-outlined');
+      
+      if (!button || !answer || !icon) return;
+      
+      button.addEventListener('click', () => {
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        
+        // Cerrar todos los demás items
+        faqItems.forEach((otherItem) => {
+          if (otherItem !== item) {
+            const otherButton = otherItem.querySelector('button');
+            const otherAnswer = otherItem.querySelector('.faq-answer');
+            const otherIcon = otherButton?.querySelector('.material-symbols-outlined');
+            
+            if (otherButton && otherAnswer && otherIcon) {
+              otherButton.setAttribute('aria-expanded', 'false');
+              otherAnswer.classList.add('hidden');
+              otherIcon.classList.remove('rotate-180');
+            }
+          }
+        });
+        
+        // Toggle del item actual
+        button.setAttribute('aria-expanded', (!isExpanded).toString());
+        answer.classList.toggle('hidden');
+        icon.classList.toggle('rotate-180');
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initFAQ);
+  initFAQ();
+</script>
+
+<style>
+  .faq-answer {
+    transition: all 0.3s ease;
+  }
+  
+  .faq-item button:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: -2px;
+  }
+</style>
