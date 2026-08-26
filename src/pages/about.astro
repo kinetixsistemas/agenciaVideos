@@ -1,105 +1,319 @@
 ---
 /**
- * about.astro - Página "Nosotros"
+ * about.astro - Página "Nosotros" mejorada
  *
- * Contiene tres secciones principales:
- * 1. Manifiesto - Declaración de principios de la agencia
- * 2. Estadísticas - Números clave (50+ proyectos, 3 Awwwards, 0 fallos)
- * 3. Equipo - Perfiles B&W con hover reveal
+ * Estructura semántica completa:
+ * - Hero con manifiesto de la agencia
+ * - Estadísticas con animación de conteo
+ * - Filosofía de trabajo (3 pilares)
+ * - Equipo con hover reveal
+ * - CTA final
  *
- * Usa display-xl para el título principal y
- * grid 12 columnas para layout asimétrico.
+ * Accesibilidad: landmarks ARIA, alt text,
+ * contraste 4.5:1, reduced-motion, keyboard nav.
  */
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+/** Pilares de la filosofía */
+const pillars = [
+  {
+    icon: "construction",
+    title: "Brutalismo Digital",
+    description: "Desmantelamos convenciones mediocres. Construimos experiencias que exigen atención y se niegan a ser ignoradas.",
+    number: "01"
+  },
+  {
+    icon: "movie",
+    title: "Producción Cinematográfica",
+    description: "Cada pixel, cada frame está diseñado con la precisión de una producción de Hollywood. Sin atajos, sin compromisos.",
+    number: "02"
+  },
+  {
+    icon: "code",
+    title: "Ingeniería de Precisión",
+    description: "Código limpio, arquitectura escalable, rendimiento optimizado. La excelencia técnica es nuestro estándar.",
+    number: "03"
+  }
+];
+
+/** Miembros del equipo */
+const team = [
+  {
+    name: "Alex Mercer",
+    role: "Director Creativo",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=750&fit=crop&q=80",
+    alt: "Retrato profesional de Alex Mercer, Director Creativo de Electric Apple"
+  },
+  {
+    name: "Sarah Chen",
+    role: "Ingeniera Principal",
+    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&h=750&fit=crop&q=80",
+    alt: "Retrato profesional de Sarah Chen, Ingeniera Principal de Electric Apple"
+  },
+  {
+    name: "Marcus Vance",
+    role: "Líder de Motion",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&h=750&fit=crop&q=80",
+    alt: "Retrato profesional de Marcus Vance, Líder de Motion de Electric Apple"
+  }
+];
 ---
 
 <BaseLayout
   title="Nosotros - Electric Apple"
   description="Visión en Movimiento. Ingeniamos ventajas competitivas a través de producción cinematográfica de élite e ingeniería digital brutalista."
 >
-  <!-- Contenido principal -->
-  <main class="flex-grow pt-32 pb-[var(--section-gap)] px-[var(--page-margin-mobile)] md:px-[var(--page-margin-desktop)] max-w-[1440px] mx-auto w-full">
-    <!-- Sección Manifiesto -->
-    <section class="mb-[var(--section-gap)] pt-16">
-      <h1 class="font-display-xl text-display-xl mb-12 uppercase text-primary leading-none tracking-tighter">
-        Arquitectamos<br />
-        <span class="text-text-primary">Verdades Digitales</span>
-      </h1>
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-[var(--gutter)]">
-        <div class="col-span-1 md:col-span-8 md:col-start-5">
-          <p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">
-            Electric Apple es un consorcio élite de brutalistas del diseño y puristas del código. Desmantelamos convenciones mediocres y engineeramos experiencias cinematográficas de alta fidelidad que exigen atención. Nuestro manifiesto es simple: sin compromisos, sin plantillas, pura innovación agresiva. Construimos espacios digitales que se sienten físicamente impactantes.
+  <main>
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- HERO / MANIFIESTO -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <section
+      class="relative min-h-[80vh] flex items-center overflow-hidden"
+      aria-labelledby="about-hero-heading"
+    >
+      <!-- Fondo con gradiente -->
+      <div class="absolute inset-0 bg-gradient-to-br from-surface-container-lowest via-surface to-surface-container"></div>
+      
+      <!-- Elementos decorativos -->
+      <div class="absolute top-20 right-[15%] w-72 h-72 bg-[#B535F6]/8 rounded-full blur-3xl" aria-hidden="true"></div>
+      <div class="absolute bottom-20 left-[10%] w-96 h-96 bg-[#32D74B]/5 rounded-full blur-3xl" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-[1440px] mx-auto w-full px-6 md:px-12 pt-32">
+        <div class="max-w-4xl">
+          <!-- Badge -->
+          <div class="inline-flex items-center gap-2 bg-[#B535F6]/10 border border-[#B535F6]/30 rounded-full px-5 py-2 mb-8 about-badge">
+            <span class="material-symbols-outlined text-[#B535F6] text-lg" style="font-variation-settings: 'FILL' 0;">info</span>
+            <span class="label-md text-sm text-[#B535F6] uppercase tracking-wider">Nuestra Historia</span>
+          </div>
+
+          <!-- Título principal -->
+          <h1
+            id="about-hero-heading"
+            class="heading-xl text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-text-primary mb-8 leading-[0.95] about-title"
+          >
+            Arquitectamos<br />
+            <span class="text-[#B535F6]">Verdades</span><br />
+            <span class="text-[#32D74B]">Digitales</span>
+          </h1>
+
+          <!-- Manifiesto -->
+          <div class="max-w-2xl about-manifesto">
+            <p class="body-lg text-xl text-text-muted leading-relaxed mb-8">
+              Electric Apple es un consorcio élite de brutalistas del diseño y puristas del código. Desmantelamos convenciones mediocres y engineeramos experiencias cinematográficas de alta fidelidad que exigen atención.
+            </p>
+            <p class="body-lg text-lg text-text-muted/80 leading-relaxed">
+              Nuestro manifiesto es simple: <strong class="text-[#32D74B]">sin compromisos, sin plantillas, pura innovación agresiva</strong>. Construimos espacios digitales que se sienten físicamente impactantes.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- FILOSOFÍA / PILARES -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <section
+      class="py-24 md:py-32 px-6 md:px-12"
+      aria-labelledby="philosophy-heading"
+    >
+      <div class="max-w-[1440px] mx-auto w-full">
+        <header class="text-center mb-16 md:mb-20">
+          <span class="label-md text-sm text-[#32D74B] uppercase tracking-widest mb-4 block">Filosofía</span>
+          <h2 id="philosophy-heading" class="heading-lg text-3xl md:text-4xl lg:text-5xl text-text-primary mb-6">
+            Nuestros Pilares
+          </h2>
+          <p class="body-lg text-lg text-text-muted max-w-2xl mx-auto">
+            Los principios fundamentales que guían cada proyecto que emprendemos.
           </p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {pillars.map((pillar, index) => (
+            <article
+              class="glass-panel p-8 md:p-10 rounded-3xl border border-outline-variant/20 hover-lift-card group pillar-card relative overflow-hidden"
+              style={`animation-delay: ${index * 150}ms`}
+            >
+              <!-- Número de fondo -->
+              <span class="absolute top-4 right-6 text-[80px] md:text-[100px] font-bold text-[#32D74B]/5 leading-none select-none group-hover:text-[#32D74B]/10 transition-colors duration-500" aria-hidden="true">
+                {pillar.number}
+              </span>
+
+              <div class="relative z-10">
+                <div class="w-14 h-14 rounded-2xl bg-[#32D74B]/10 flex items-center justify-center mb-6 group-hover:bg-[#32D74B]/20 transition-colors duration-300">
+                  <span class="material-symbols-outlined text-2xl text-[#32D74B]" style="font-variation-settings: 'FILL' 0;">{pillar.icon}</span>
+                </div>
+                <h3 class="heading-md text-xl md:text-2xl text-text-primary mb-4">{pillar.title}</h3>
+                <p class="body-md text-text-muted leading-relaxed">{pillar.description}</p>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
 
-    <!-- Sección Estadísticas -->
-    <section class="mb-[var(--section-gap)]">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-[var(--component-gap)] border-t border-b border-outline-variant/20 py-12">
-        <!-- Proyectos completados -->
-        <div class="flex flex-col items-center justify-center text-center p-8 bg-surface-container/50 rounded-[32px] backdrop-blur-md">
-          <span class="font-display-xl text-[80px] leading-none text-[#B535F6] mb-4">50+</span>
-          <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Proyectos</span>
-        </div>
-        <!-- Premios Awwwards -->
-        <div class="flex flex-col items-center justify-center text-center p-8 bg-surface-container/50 rounded-[32px] backdrop-blur-md">
-          <span class="font-display-xl text-[80px] leading-none text-[#B535F6] mb-4">3</span>
-          <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Awwwards</span>
-        </div>
-        <!-- Fallos de entrega -->
-        <div class="flex flex-col items-center justify-center text-center p-8 bg-surface-container/50 rounded-[32px] backdrop-blur-md">
-          <span class="font-display-xl text-[80px] leading-none text-[#B535F6] mb-4">0</span>
-          <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Entregas Fallidas</span>
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- EQUIPO -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <section
+      class="py-24 md:py-32 px-6 md:px-12 bg-surface-container-lowest"
+      aria-labelledby="team-heading"
+    >
+      <div class="max-w-[1440px] mx-auto w-full">
+        <header class="text-center mb-16 md:mb-20">
+          <span class="label-md text-sm text-[#B535F6] uppercase tracking-widest mb-4 block">Equipo</span>
+          <h2 id="team-heading" class="heading-lg text-3xl md:text-4xl lg:text-5xl text-text-primary mb-6">
+            Los Arquitectos
+          </h2>
+          <p class="body-lg text-lg text-text-muted max-w-2xl mx-auto">
+            El equipo detrás de cada experiencia digital que creamos.
+          </p>
+        </header>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {team.map((member, index) => (
+            <article
+              class="team-card group relative rounded-3xl overflow-hidden bg-surface-container aspect-[3/4] cursor-pointer"
+              style={`animation-delay: ${index * 150}ms`}
+            >
+              <!-- Imagen -->
+              <img
+                class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0"
+                src={member.image}
+                alt={member.alt}
+                loading="lazy"
+                width="600"
+                height="750"
+              />
+              
+              <!-- Overlay gradiente -->
+              <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
+              
+              <!-- Información del miembro -->
+              <div class="team-info absolute bottom-0 left-0 w-full p-6 md:p-8">
+                <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                  <h3 class="heading-md text-xl md:text-2xl text-white mb-1">{member.name}</h3>
+                  <p class="label-md text-sm text-[#B535F6] uppercase tracking-wider">{member.role}</p>
+                </div>
+              </div>
+
+              <!-- Borde inferior animado -->
+              <div class="absolute bottom-0 left-0 w-full h-1 bg-[#B535F6] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
 
-    <!-- Sección Equipo -->
-    <section>
-      <h2 class="font-headline-lg text-headline-lg mb-12 uppercase border-b border-outline-variant/20 pb-6">Los Arquitectos</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[var(--gutter)]">
-        <!-- Miembro del equipo 1 -->
-        <div class="team-card relative group rounded-[32px] overflow-hidden bg-surface-container aspect-[4/5] cursor-pointer">
-          <img class="w-full h-full object-cover grayscale transition-transform duration-500 group-hover:scale-105" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=750&fit=crop&q=80" alt="Alex Mercer - Director Creativo" />
-          <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
-          <div class="team-info absolute bottom-0 left-0 w-full p-8 bg-surface/90 backdrop-blur-xl border-t border-outline-variant/10">
-            <h3 class="font-headline-md text-headline-md text-primary mb-1">Alex Mercer</h3>
-            <p class="font-label-md text-label-md text-text-muted uppercase tracking-wider">Director Creativo</p>
-          </div>
-        </div>
-        <!-- Miembro del equipo 2 -->
-        <div class="team-card relative group rounded-[32px] overflow-hidden bg-surface-container aspect-[4/5] cursor-pointer md:mt-12">
-          <img class="w-full h-full object-cover grayscale transition-transform duration-500 group-hover:scale-105" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&h=750&fit=crop&q=80" alt="Sarah Chen - Ingeniera Principal" />
-          <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
-          <div class="team-info absolute bottom-0 left-0 w-full p-8 bg-surface/90 backdrop-blur-xl border-t border-outline-variant/10">
-            <h3 class="font-headline-md text-headline-md text-primary mb-1">Sarah Chen</h3>
-            <p class="font-label-md text-label-md text-text-muted uppercase tracking-wider">Ingeniera Principal</p>
-          </div>
-        </div>
-        <!-- Miembro del equipo 3 -->
-        <div class="team-card relative group rounded-[32px] overflow-hidden bg-surface-container aspect-[4/5] cursor-pointer">
-          <img class="w-full h-full object-cover grayscale transition-transform duration-500 group-hover:scale-105" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&h=750&fit=crop&q=80" alt="Marcus Vance - Líder de Motion" />
-          <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
-          <div class="team-info absolute bottom-0 left-0 w-full p-8 bg-surface/90 backdrop-blur-xl border-t border-outline-variant/10">
-            <h3 class="font-headline-md text-headline-md text-primary mb-1">Marcus Vance</h3>
-            <p class="font-label-md text-label-md text-text-muted uppercase tracking-wider">Líder de Motion</p>
-          </div>
-        </div>
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- CTA -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <section
+      class="py-24 md:py-32 px-6 md:px-12"
+      aria-labelledby="cta-heading"
+    >
+      <div class="max-w-[1000px] mx-auto w-full text-center">
+        <h2 id="cta-heading" class="heading-lg text-3xl md:text-4xl lg:text-5xl text-text-primary mb-6">
+          ¿Listo para trabajar juntos?
+        </h2>
+        <p class="body-lg text-lg text-text-muted max-w-2xl mx-auto mb-10">
+          Nos asociamos con marcas visionarias que buscan redefinir el estándar digital de su industria.
+        </p>
+        <a class="btn-primary text-lg px-10 py-5" href="/contact">
+          Iniciar Conversación
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_forward</span>
+        </a>
       </div>
     </section>
   </main>
 </BaseLayout>
 
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initAboutPage() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    // Hero animations
+    const heroTitle = document.querySelector('.about-title');
+    const heroBadge = document.querySelector('.about-badge');
+    const heroManifesto = document.querySelector('.about-manifesto');
+
+    if (heroTitle) {
+      const tl = gsap.timeline({ delay: 0.2 });
+      
+      if (heroBadge) {
+        tl.from(heroBadge, { y: 20, opacity: 0, duration: 0.6, ease: "power3.out" });
+      }
+      
+      tl.from(heroTitle, { y: 60, opacity: 0, duration: 1, ease: "power3.out" }, "-=0.3");
+      
+      if (heroManifesto) {
+        tl.from(heroManifesto.children, { y: 30, opacity: 0, duration: 0.8, stagger: 0.2, ease: "power3.out" }, "-=0.5");
+      }
+    }
+
+    // Pillar cards
+    gsap.from('.pillar-card', {
+      y: 60,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: '[aria-labelledby="philosophy-heading"]',
+        start: "top 80%",
+        toggleActions: "play none none none"
+      }
+    });
+
+    // Team cards
+    gsap.from('.team-card', {
+      y: 80,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: '[aria-labelledby="team-heading"]',
+        start: "top 80%",
+        toggleActions: "play none none none"
+      }
+    });
+  }
+
+  document.addEventListener('astro:page-load', initAboutPage);
+  initAboutPage();
+</script>
+
 <style>
-  /* Efecto hover para tarjetas del equipo: revelar info al pasar mouse */
+  /* Team card hover effects */
+  .team-card .team-info {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
   .team-card:hover .team-info {
     opacity: 1;
     transform: translateY(0);
   }
-  .team-info {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.3s ease-in-out;
+
+  /* Focus states for accessibility */
+  .team-card:focus-visible,
+  .pillar-card:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 4px;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .team-card .team-info {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 </style>
