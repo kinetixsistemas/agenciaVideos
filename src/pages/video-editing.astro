@@ -13,9 +13,16 @@
  * contraste 4.5:1, foco visible, alt text descriptivos.
  */
 import BaseLayout from "../layouts/BaseLayout.astro";
+import reelVideo from "../assets/videos/BLACK FADE STUDIO (REEL).mp4";
 
 /** Datos de la galería */
 const gallery = [
+  {
+    title: "Black Fade Studio Reel",
+    category: "Showreel",
+    video: true,
+    alt: "Showreel de Black Fade Studio: reel de trabajos destacados en edición de video y efectos visuales"
+  },
   {
     title: "Lumina Motors",
     category: "Comercial Automotriz",
@@ -58,14 +65,14 @@ const gallery = [
 const plans = [
   {
     name: "Start",
-    price: "$1,500",
-    period: "por proyecto",
+    price: "$149.99",
+    period: "Mensual",
     description: "Ideal para contenido de redes sociales y videos cortos.",
     features: [
+      "4 Short Videos",
       "Video de hasta 60 segundos",
-      "Edición básica con transiciones",
-      "Color grading estándar",
-      "Música de stock incluida",
+      "Cortes, ritmo y estructura básica.",
+      "Corrección de color básica.",
       "2 rondas de revisión",
       "Entrega en 5 días"
     ],
@@ -75,16 +82,16 @@ const plans = [
   },
   {
     name: "Bussisness Pro",
-    price: "$4,500",
-    period: "por proyecto",
+    price: "$274.99",
+    period: "Mensual",
     description: "Para marcas que necesitan contenido cinematográfico.",
     features: [
-      "Video de hasta 3 minutos",
+      "8 Short Videos",
       "Motion graphics personalizados",
       "Color grading profesional",
       "Sonido diseño y mezcla",
-      "VFX compositing básico",
-      "5 rondas de revisión",
+      "Subtítulos / captions sencillos.",
+      "2 rondas de revisión",
       "Entrega en 10 días"
     ],
     cta: "Elegir Business Pro",
@@ -93,18 +100,17 @@ const plans = [
   },
   {
     name: "Elite VIP",
-    price: "$12,000",
-    period: "por proyecto",
+    price: "$399.99",
+    period: "Mensual",
     description: "Producción completa con efectos visuales de alto nivel.",
     features: [
-      "Video ilimitado en duración",
-      "VFX avanzados y 3D",
-      "Motion graphics complejos",
+      "12 Short Videos",
+      "Música y efectos de sonido",
       "Color grading cinematográfico",
       "Diseño de sonido completo",
-      "Edición ilimitada",
+      "B-roll proporcionado por el cliente o recursos disponibles.",
       "Entrega prioritaria",
-      "Soporte post-entrega 30 días"
+      "Soporte post-entrega"
     ],
     cta: "Elegir Elite VIP",
     popular: false,
@@ -232,14 +238,26 @@ const faq = [
               style={`animation-delay: ${index * 100}ms`}
             >
               <div class="aspect-[4/3] relative overflow-hidden">
-                <img
-                  src={item.image}
-                  alt={item.alt}
-                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  loading="lazy"
-                  width="800"
-                  height="600"
-                />
+                {item.video ? (
+                  <video
+                    src={reelVideo}
+                    controls
+                    playsinline
+                    preload="none"
+                    poster="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&h=600&fit=crop&q=80"
+                    class="w-full h-full object-cover"
+                    aria-label={item.alt}
+                  ></video>
+                ) : (
+                  <img
+                    src={item.image}
+                    alt={item.alt}
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
+                    width="800"
+                    height="600"
+                  />
+                )}
                 <div class="absolute inset-0 bg-gradient-to-t from-surface/90 via-surface/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
                 <!-- Overlay con info -->
@@ -249,9 +267,11 @@ const faq = [
                 </div>
 
                 <!-- Icono de play -->
-                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-[#32D74B] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-75 group-hover:scale-100 shadow-[0_0_30px_rgba(50,215,75,0.5)]">
-                  <span class="material-symbols-outlined text-3xl text-surface-container-lowest" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-                </div>
+                {!item.video && (
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-[#32D74B] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-75 group-hover:scale-100 shadow-[0_0_30px_rgba(50,215,75,0.5)]">
+                    <span class="material-symbols-outlined text-3xl text-surface-container-lowest" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                  </div>
+                )}
               </div>
             </article>
           ))}
