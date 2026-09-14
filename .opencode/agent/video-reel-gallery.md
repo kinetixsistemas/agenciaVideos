@@ -42,9 +42,14 @@ video DEBE llevar la clase `gallery-item` para animarse igual que el resto.
    - El overlay de "play" central de las tarjetas de imagen solo aplica al
      hover; en la tarjeta de video no hace falta, los controles nativos ya
      comunican la acción de reproducir.
-5. IMPORTANTE: el archivo pesa ~233MB. Con `preload="none"`, `controls` y
-   `poster` el navegador NO descarga el video hasta que el usuario lo
-   reproduzca. No lo cambies a `autoplay` ni omitas `preload`.
+5. IMPORTANTE: el archivo pesa ~233MB y fue convertido a `faststart` (átomo
+   `moov` al principio del fichero). Usa `preload="metadata"` y `controls` para
+   que el navegador descargue solo ~56KB de metadatos y arranque la
+   reproducción bajo demanda. No uses `autoplay`.
+6. Si el mp4 fuente de `src/assets/videos/` NO tiene el `moov` al principio
+   (comprobar: `grep -abo 'moov' archivo.mp4` debe devolver un offset pequeño,
+   no cientos de millones), hay que reubicarlo con `faststart` antes de
+   importarlo, o el video no reproducirá en el navegador.
 6. Mantén `loading` / `aspect` coherentes y no alteres el resto de la página
    (gallery, plans, faq, scripts o estilos).
 
