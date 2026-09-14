@@ -173,15 +173,15 @@ const additionalPackages = [
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
         {additionalPackages.map((pkg) => (
-          <div class="glass-panel p-8 rounded-3xl border border-outline-variant/20 hover-lift-card group text-center">
-            <div class="w-16 h-16 rounded-full bg-[#32D74B]/10 flex items-center justify-center mx-auto mb-6 group-hover:bg-[#32D74B]/20 transition-colors">
-              <span class="material-symbols-outlined text-3xl text-[#32D74B]" style="font-variation-settings: 'FILL' 0;">{pkg.icon}</span>
+          <div class="glass-panel p-6 md:p-8 rounded-2xl md:rounded-3xl border border-outline-variant/20 group text-center">
+            <div class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-[#32D74B]/10 flex items-center justify-center mx-auto mb-5 md:mb-6 group-hover:bg-[#32D74B]/20 transition-colors">
+              <span class="material-symbols-outlined text-2xl md:text-3xl text-[#32D74B]" style="font-variation-settings: 'FILL' 0;">{pkg.icon}</span>
             </div>
-            <h3 class="heading-md text-xl text-text-primary mb-3">{pkg.title}</h3>
-            <p class="body-md text-text-muted mb-4">{pkg.description}</p>
-            <span class="heading-md text-lg text-[#32D74B]">{pkg.price}</span>
+            <h3 class="heading-md text-lg md:text-xl text-text-primary mb-3">{pkg.title}</h3>
+            <p class="body-md text-text-muted text-xs md:text-sm mb-4">{pkg.description}</p>
+            <span class="heading-md text-base md:text-lg text-[#32D74B]">{pkg.price}</span>
           </div>
         ))}
       </div>
@@ -197,7 +197,7 @@ const additionalPackages = [
       <p class="body-lg text-lg text-text-muted max-w-2xl mx-auto mb-10">
         Cada proyecto es único. Contáctanos para crear un paquete a medida que se adapte perfectamente a tus necesidades.
       </p>
-      <a class="btn-primary text-lg px-10 py-5" href="/contact">
+      <a class="btn-primary text-base md:text-lg px-8 md:px-10 py-4 md:py-5" href="/contact">
         Solicitar Presupuesto Personalizado
         <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_forward</span>
       </a>
