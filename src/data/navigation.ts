@@ -11,7 +11,6 @@ import type { NavItem } from "../types";
 export const mainNav: NavItem[] = [
   { label: "Inicio", href: "/" },
   { label: "Edición de Videos", href: "/video-editing" },
-  { label: "Diseño Gráfico", href: "/graphic-design" },
   { label: "Páginas Web", href: "/web-development" },
   { label: "Nosotros", href: "/about" },
   { label: "Contacto", href: "/contact" },

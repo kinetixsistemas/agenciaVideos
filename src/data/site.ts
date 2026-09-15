@@ -21,5 +21,5 @@ export const siteConfig: SiteConfig = {
   /** Correo electrónico de contacto */
   email: "hola@daller.agency",
   /** Teléfono de contacto */
-  phone: "+13105551234",
+  phone: "+51989634309",
 };

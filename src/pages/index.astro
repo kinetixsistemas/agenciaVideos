@@ -5,14 +5,11 @@
  * Página de inicio que ensambla los componentes:
  * - Hero: Bienvenida principal
  * - Caption: Slogan impactante
- * - Services: Servicios de la agencia (zigzag)
- * - FeaturedWork: Carrusel de proyectos
  * - CTA: Llamada a la acción final
  */
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
 import Caption from "../components/Caption.astro";
-import Services from "../components/Services.astro";
 import FeaturedWork from "../components/FeaturedWork.astro";
 import CTA from "../components/CTA.astro";
 ---
@@ -20,7 +17,6 @@ import CTA from "../components/CTA.astro";
 <BaseLayout>
   <Hero />
   <Caption />
-  <Services />
   <FeaturedWork />
   <CTA />
 </BaseLayout>
